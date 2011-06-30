@@ -1,0 +1,25 @@
+#home {
+	
+}
+#home .news_block {
+	
+}
+#home .news_block .item{
+
+	display: table-cell;
+	padding: 10px;
+	text-align: justify;
+}
+#home .news_block .item h3 {
+	font-size: 20px;
+	margin-bottom: 5px;
+}
+#home .featured_prod .item {
+	display: table-cell;
+	padding: 0px 10px;
+
+}
+#home .featured_prod .item .prod_img img {
+	width: 100%;
+	
+}

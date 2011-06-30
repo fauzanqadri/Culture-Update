@@ -1,0 +1,141 @@
+/* @group 	  FONT FACE	 */
+@font-face {
+    font-family: 'TimelessRegular';
+    src: url('font/timeless-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+
+}
+/* @end */
+
+/* @group MAIN BLOCKING */
+.wrapper {
+
+}
+.header {
+	background-position: center bottom;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid #CCCCCC;
+    height: 75px;
+    margin-bottom: 10px;
+    padding-bottom: 13px;
+    position: relative;
+}
+.header .logo {
+	padding: 25px 0px;
+	width: 870px;
+}
+.footer {
+
+}
+.component {
+		background: url(../img/bottom_border_shadow.png) no-repeat center bottom;
+		min-height: 300px;
+		padding-bottom: 30px;
+}
+.component .topBar {
+	height: 30px;
+}
+
+
+/* @end */
+
+
+/* @group TYPO */
+body {
+	font-family: TimelessRegular;
+	color: #484848;
+	font-size: 13px;
+	letter-spacing: -0.5px;
+}
+.headingPage {
+	
+}
+h1.heading {
+	font-weight: normal;
+}
+h1, h2, h3, h4, h5, h6, h7 {
+	font-weight: normal;
+}
+h1 {
+	font-size: 33px;
+}
+h2 {
+	font-size: 31px;
+}
+h3 {
+	font-size: 29px;
+}
+h4{
+	font-size: 27px;
+}
+h5{
+	font-size: 25px;
+}
+h6{
+	font-size: 23px;
+}
+
+
+/* @end */
+
+
+/* @group MISC */
+ul.horizontal {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+ul.horizontal li {
+	margin: 0px;
+	float: left;
+}
+
+
+
+/* @end */
+
+
+
+/* @group PAGE SPECIAL */
+
+
+
+/* @end */
+
+/* @group CORE BLOCK */
+.topBar .navTop .horizontal li a {
+	display: block;
+	padding: 0px 10px;
+	text-decoration: none;
+}
+.topBar .navTop .horizontal li {
+	line-height: 25px;
+	height: 25px;
+}
+.topBar .userMenu p {
+	line-height: 25px;
+	height: 25px;
+	margin: 0px;
+	padding: 0px;
+	margin:0px;
+}
+.topBar .userMenu p .cart_info:hover .cart_icon {
+	background: url(../img/cart_icon.png) no-repeat center top;
+
+}
+
+.topBar .userMenu p .cart_icon {
+	background: url(../img/cart_icon.png) no-repeat center bottom;
+	height: 13px;
+	width: 13px;
+	display: inline-block;
+	margin-right: 5px;
+}
+.topBar .userMenu a {
+	text-decoration: none;
+}
+
+
+/* @end */
+
