@@ -22,7 +22,11 @@ class Thumb extends MX_Controller {
 		$h = $param[1];
 		$c = $param[2];
 		$source = strstr($url, '/dir/');
+	
+		
+		
 		$s = str_replace('/dir/', '',$source);
+		$s = (file_exists($s)) ? $s : 'assets/global_img/default_img.jpg'; 
 		$thumb = $this->load->library('PhpThumbFactory');
 		$pre_source = explode('/', $s);
 		$file_name = $pre_source[count($pre_source)-1];
@@ -66,6 +70,7 @@ class Thumb extends MX_Controller {
         	$image = $thumb->create($path_img_cache);
         	$image->show();
         }
+
 
 		
 	}

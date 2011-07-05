@@ -18,7 +18,7 @@ class B_product extends MX_Controller {
 	
 	//Page
 	function index() {
-		
+			redirect('backend/store/b_product/listprod');
 	}
 	function addprod(){
 		$data = array(
@@ -26,7 +26,7 @@ class B_product extends MX_Controller {
 			'pt'        => 'Input Product',
 			'ht'		=> 'Input Product',
 			);
-		$this->dodol_theme->render($data,'back');
+		$this->dodol_theme->admin_render()->build('page/store/product/addprod_v', $data);
 		if($this->input->post('submit')){
 		$this->exe_addprod();
 		}
@@ -48,7 +48,7 @@ class B_product extends MX_Controller {
 		$data['pt'] = 'edit product';
 		$data['ht'] = 'edit product - '.$prod['prod']->name;
 		$this->carabiner->js('global_js/drag_sort/j_drag_sort.js', '', TRUE, FALSE, 'add_on'); 
-		$this->dodol_theme->render($data, 'back');
+		$this->dodol_theme->admin_render()->build('page/store/product/editprod_v', $data);
 		
 		if($this->input->post('submit')){
 			$this->exe_editprod($idprod);
@@ -143,7 +143,7 @@ class B_product extends MX_Controller {
 		}
 		
 		
-		$this->dodol_theme->render($data,'back');
+		$this->dodol_theme->admin_render()->build('page/store/product/listprod_v',$data);
 	}
 	// Edit Media View
 	function editmedia(){
@@ -157,7 +157,7 @@ class B_product extends MX_Controller {
 			'ht'        => 'Update Media - '.$media->name. '<small> product : '.$prod['prod']->name.' | sku :'.$prod['prod']->sku.'</small>',
 			'media'		=> $media,
 				);
-		$this->dodol_theme->render($data,'back');
+		$this->dodol_theme->admin_render()->build('page/store/product/editmedia_v', $data);
 		if($this->input->post('submit')){
 			if($this->input->post('default') == '1'){$def = 1;}else{$def = 0;}
 			if($this->input->post('publish') == 'y'){ $pub = 'y';}else{ $pub = 'n';}

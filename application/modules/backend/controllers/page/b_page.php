@@ -20,7 +20,7 @@ class B_page extends MX_Controller {
 	function create(){
 
 		$render['mainLayer'] = 'backend/page/page/page/create_v';
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/page/page/create_v', $render);
 		// EXECUTION
 		if($this->input->post('submit')):
 			$datapass = array(
@@ -66,7 +66,7 @@ class B_page extends MX_Controller {
 		$render['pT'] = 'Update Page - '.$q->title;
 		$render['pH'] = 'Update Page - '.$q->title;
 		$render['mainLayer'] = 'backend/page/page/page/update_v';
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/page/page/update_v', $render);
 		
 	}
 	function delete(){
@@ -96,7 +96,7 @@ class B_page extends MX_Controller {
 		$render['mainLayer'] = 'backend/page/page/page/browse_v';
 		/// QUERY
 		$render['pages'] = modules::run('page/exe_browse');
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/page/page/browse_v', $render);
 		
 	}
 

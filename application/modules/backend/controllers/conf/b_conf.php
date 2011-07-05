@@ -19,7 +19,7 @@ class B_conf extends MX_Controller {
 		$render['mainLayer'] = 'backend/page/conf/create_v';
 		$render['pT'] = 'Create Configuration';
 		$render['pH'] = 'Create Configuration';
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/conf/create_v', $render);
 		if($this->input->post('create')){
 			$final_object = array();
 			$data['name'] = $this->input->post('name');
@@ -39,7 +39,7 @@ class B_conf extends MX_Controller {
 				redirect('backend/conf/b_conf/browse');
 			}
 		}
-		
+		$this->dodol_theme->admin_render()->build('page/conf/create_v', $render);
 	}
 	function update(){
 		$menuSource = array(array('anchor' => 'All Configuration', 'link' => site_url('backend/conf/b_conf/browse')), array('anchor' => 'New Configuration', 'link' => site_url('backend/conf/b_conf/create')));
@@ -50,7 +50,7 @@ class B_conf extends MX_Controller {
 		$render['pT'] = 'Update Configuration -'.$conf->name;
 		$render['pH'] = 'Update Configuration -'.$conf->name;
 		$render['conf'] = $conf;
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/conf/update_v', $render);
 		if($this->input->post('update')){
 			$final_object = array();
 			$data['name'] = $this->input->post('name');
@@ -78,7 +78,7 @@ class B_conf extends MX_Controller {
 		$render['pT'] = 'List Configuration';
 		$render['confs'] = modules::run('conf/getall');
 		$render['pH'] = 'List Configuration';
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/conf/browse_v', $render);
 	}
 	function delete(){
 		$id = $this->uri->segment(5);

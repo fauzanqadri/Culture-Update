@@ -75,7 +75,7 @@ class Checkout extends MX_Controller {
 				'ship_data'  => $this->cart->shipto_info,
 				//'loadSide' => false
 				);
-			$this->dodol_theme->render($data);
+			$this->dodol_theme->render()->build('checkout/summary_cart', $data);
 		
 			if($this->input->post('submit')){
 				/*
@@ -373,7 +373,7 @@ class Checkout extends MX_Controller {
 		$data['cart'] = modules::run('store/checkout/summary_cart');
 		$data['mainLayer'] = 'store/page/checkout/shipping_method_v';
 		
-		$this->dodol_theme->render($data);
+		$this->dodol_theme->render()->build('page/checkout/shipping_method_v', $data);
 		if($this->input->post('next')){
 			$this->exe_shipping_method();
 		}
@@ -421,7 +421,7 @@ class Checkout extends MX_Controller {
 			'pT'        => 'Checkout - Payment Method',
 			'cart'      => modules::run('store/checkout/summary_cart'),
 		);
-		$this->dodol_theme->render($data);
+		$this->dodol_theme->render()->build('page/checkout/payment_v', $data);
 		if($this->input->post('next')){
 			$this->exe_payment();
 		}
@@ -472,7 +472,7 @@ class Checkout extends MX_Controller {
 				'pT'        => 'Checkout - Order Summary',
 				'cart'      => modules::run('store/checkout/summary_cart'),
 				);
-			$this->dodol_theme->render($rendered);
+			$this->dodol_theme->render($rendered)->build('page/checkout/summary_v', $data);
 			if($this->input->post('process') && $this->recaptcha->validate()){
 			  $this->process();
 			}
@@ -588,7 +588,7 @@ class Checkout extends MX_Controller {
 			$this->session->unset_userdata('order_id');
 			$this->cart->destroy_data();
 			$this->cart->destroy();
-			$this->dodol_theme->render($data);
+			$this->dodol_theme->render()->build('page/checkout/success_v', $data);
 		
 		}else{
 			redirect('store/checkout/summary?tpl=checkout');

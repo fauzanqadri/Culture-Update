@@ -26,6 +26,7 @@ $(document).ready(function(){
 });
 
 // COPY TO CLIP BOARD
+/*
 $(document).ready(function(){
 	ZeroClipboard.setMoviePath('http://localhost/dodolan//assets/global_js/zeroclip/ZeroClipboard.swf');
 	clip = new ZeroClipboard.Client();
@@ -51,6 +52,7 @@ $(document).ready(function(){
 
 
 });
+*/
 
 $(document).ready(function(){
 	
@@ -243,15 +245,6 @@ $(document).ready(function(){
 	$(location).attr('href', location)
 	}
 })(jQuery);
-
-function ClipBoard()
-{
-holdtext.innerText = copytext.innerText;
-Copied = holdtext.createTextRange();
-Copied.execCommand("Copy");
-}
-
-
 
 
 

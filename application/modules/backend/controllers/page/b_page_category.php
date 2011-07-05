@@ -20,7 +20,7 @@ class B_page_category extends MX_Controller {
 		$render['pH'] = 'Create Page Category';
 		$render['pT'] = 'Create Page Category';
 		$render['mainLayer'] = 'page/page/category/create_v';
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/page/category/create_v', $render);
 		
 		if($this->input->post('create')):
 			$insert_data = array(
@@ -48,7 +48,7 @@ class B_page_category extends MX_Controller {
 		$render['pH'] = 'Update Page Category '.$cat->name;
 		$render['pT'] = 'Update Page Category '.$cat->name;
 		$render['mainLayer'] = 'page/page/category/update_v';
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/page/category/update_v', $render);
 		if($this->input->post('update')):
 			$insert_data = array(
 				'name' => $this->input->post('name'),
@@ -94,7 +94,7 @@ class B_page_category extends MX_Controller {
 		$render['cats'] = $q;
 		$render['mainLayer'] = 'page/page/category/browse_v';
 		
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/page/category/browse_v', $render);
 	}
 	function delete(){
 		if($del = modules::run('page/page_category/exe_delete',$this->uri->segment(5) )):

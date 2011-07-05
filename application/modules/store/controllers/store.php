@@ -16,13 +16,11 @@ class Store extends MX_Controller {
 	}
 	
 	function index() {
-		$data['loadSide'] = false;
-		$data['data'] = 'asuh';
-		$this->dodol_theme->render($data);
+	
 	}
 
 	function request_restock($data=array()){
-		$this->load->view('store/misc/store/request_restockform_v', $data);
+		$this->template->build('misc/store/request_restockform_v', $data);
 	}
 	function exe_requestRestock(){
 		$data = array(

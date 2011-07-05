@@ -17,8 +17,7 @@ class B_order extends MX_Controller {
 	}
 	
 	function index() {
-		$data['directLayer'] = 'this is halaman order';
-		$this->dodol_theme->render($data, 'back');
+		redirect('backedn/store/b_order/browse');
 	}
 	
 	function browse(){
@@ -66,32 +65,7 @@ class B_order extends MX_Controller {
 		$data['pT']     	= $query['number_rec'];
 		$data['mainLayer'] 	='backend/page/store/order/browse_order_v';
 		$data['asuh'] 		= $query['number_rec'];
-		$this->dodol_theme->render($data, 'back');
-		
-	}
-	function test_browse(){
-		$this->load->library('barock_page');
-		$url = $this->uri->uri_to_assoc();
-		$limit = ($limit = element('limit', $url)) ? $limit : 20;
-		$page  = ($page = element('page', $url)) ? $page : 1;
-		$start = ($page == false) ? ($page-1)*$limit : 0 ;
-		$q_conf = array('start' => $start, 'limit' => $limit);
-		if($query = $this->order_m->browse($q_conf)):
-		$target_url = str_replace('/page/'.$param['page'] , '', current_url());
-		$confpage = array(
-			'target_page' 	=> $target_url,
-			'num_records' 	=> $query['num_rec'],	
-			'num_link'	  	=> 5,
-			'per_page'   	=> $limit,
-			'cur_page'   	=> $page
-			);
-			
-		$this->barock_page->initialize($confpage);
-		endif;
-		$data['orders']    	= $query['result'];
-		$data['pT']     	= $query['num_rec'];
-		$data['mainLayer'] 	='backend/page/store/order/browse_order_v';
-		$this->dodol_theme->render($data, 'back');
+		$this->dodol_theme->admin_render()->build('page/store/order/browse_order_v', $data);
 		
 	}
 	function view(){
@@ -106,7 +80,7 @@ class B_order extends MX_Controller {
 		$render['pageTool'] = modules::run('backend/store/b_order/updater_form', $order->id, $order->status);
 		$render['pH'] = 'Order No. '.$order->id;
 		$render['mainLayer'] 	='backend/page/store/order/view_v';
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/store/order/view_v', $data);
 	}
 	function updater_form($id_order, $current){
 		$render['id'] = $id_order;

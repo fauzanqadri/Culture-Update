@@ -1,3 +1,5 @@
+
+
 <?=load_widget('front_landing')?>
 <div class="footer">
 	<div class="resource_bottom">	

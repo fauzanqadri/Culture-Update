@@ -20,7 +20,6 @@
 		 <?=$p->l_desc;?>
 	</div>
 	<?=modules::run('store/store_cart/addToCartForm', $a, $p);?>
-	
 	<div class="mediaProd">
 		<script>
 		$(document).ready(function(){

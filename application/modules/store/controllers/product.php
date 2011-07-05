@@ -29,7 +29,7 @@ class Product extends MX_Controller {
 		$q = modules::run('store/product/api_getbyid', $id, array('media'));
 		$data['prod'] =  $q['product'];
 		$data['media'] = $q['media'];
-		$this->load->view('store/misc/product/productSnap_v', $data);
+		$this->dodol_theme->view('store/misc/product/productSnap_v', $data);
 	}
 	function sendCatalog(){
 		$param['id'] = $this->uri->segment(4);
@@ -60,7 +60,7 @@ class Product extends MX_Controller {
 		$data['loadSide'] = false;
 		$data['mainLayer'] = 'store/page/product/detailProd';
 		$data['pT']        = $data['prod']['product']->name;
-		$this->dodol_theme->render($data);
+		$this->dodol_theme->render()->build('page/product/detailProd', $data);
 		// execution buy product
 		modules::run('store/store_cart/buyProd');
 	}
@@ -195,7 +195,8 @@ class Product extends MX_Controller {
 		}else{
 		$data['pT'] = 'Store Product';
 		}
-		$this->dodol_theme->render($data);
+		$this->dodol_theme->render()
+			 			  ->build('page/product/browse_view_v', $data);
 	}
 	
 	/// API ///

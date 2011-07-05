@@ -19,8 +19,6 @@ class Page extends MX_Controller {
 	function index() {
 		$page = modules::run('page/exe_getbyid', 1);
 		$this->dodol_theme->render($render);
-		
-		
 	}
 	function view(){
 		$id = $this->uri->segment(3);
@@ -28,13 +26,13 @@ class Page extends MX_Controller {
 		$render['page'] = $page;
 		$render['pT'] = $page->title;
 		$render['mainLayer'] = 'page/view_v';
-		$this->dodol_theme->render($render);
+		$this->dodol_theme->render()->build('view_v', $render);
 	}
 	function landingpage(){
 
 		$render['loadSide'] = false;
 		$render['mainLayer'] = 'page/landingpage_v';
-		$this->dodol_theme->render($render);
+		$this->dodol_theme->render()->build('landingpage_v', $render);
 	}
 	// API ///
 

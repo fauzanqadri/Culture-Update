@@ -9,18 +9,14 @@ class Bug {
 	}
 	function send($msg=false){
 		if($msg!=false){
-			$this->msg[] = $msg;
+			$this->msg['Template_debug'] = $msg;
 		}else{
 			return false;
 		}
 	}
 	function show(){	    
-		if(count(get_defined_vars()) > 0){
-			$i= 1;
-			foreach(get_defined_vars() as $msg){
-				echo '<div class=""><h4 class="left mr20">'.$i.'</h4>'.$msg.'</div><br class="clear"><div class="horline"></div>';
-				$i++;
-			}
+		if(count($this->msg) > 0){
+			return	$this->_ci->dodol->print_arrayRecrusive($this->msg);
 		}else{
 			return false;
 		}

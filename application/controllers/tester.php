@@ -164,30 +164,20 @@ class Tester extends MX_Controller {
 		
 		if($this->input->post('upload')){
 				$this->load->library('upload');
-				$config['upload_path'] = './tester_upload/';
-				$config['allowed_types'] = 'gif|jpg|png';
+				$config['upload_path'] = './myfile/';
+				$config['allowed_types'] = 'gif|jpg|png|dmg|txt';
 				$config['file_name'] = $this->input->post('name_image');
-				$config['max_size']	= '100000';
+				$config['max_size']	= '1000000000';
 				$config['overwrite'] = false;
 				$this->upload->initialize($config);
 				$up = $this->upload->do_upload('image');
 				$this->load->library('image_lib');
 				$result = $this->upload->data();
 
-               $i = imagecreatefromjpeg($result['full_path']);	 
-               
-				$sharpen = array(
-					array(0.0, -1.0, 0.0),
-					array(-1.0, 5.0, -1.0),
-					array(0.0, -1.0, 0.0)
-				);
-
-				// calculate the sharpen divisor
-				$divisor = array_sum(array_map('array_sum', $sharpen));
-
-				// apply the matrix
-				imageconvolution($i, $sharpen, $divisor, 0);
 		}
+	}
+	function asuh(){
+		echo 'Kampret';
 	}
 
 

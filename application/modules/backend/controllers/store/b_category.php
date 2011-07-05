@@ -17,11 +17,8 @@ class B_category extends MX_Controller {
 	}
 	
 	function index() {
-		$data = array(
-		'directLayer' => 'this is index of category banck end',
-		'pt' => 'category'
-			);
-			$this->dodol_theme->render($data, 'back');
+		redirect('backend/store/b_category/browse');
+		
 	}
 	function addcat(){
 		$data = array(
@@ -30,7 +27,7 @@ class B_category extends MX_Controller {
 			'mainLayer' => 'backend/page/store/category/addcat_v',
 			'ht' => 'Add Category'
 				);
-		$this->dodol_theme->render($data, 'back');
+		$this->dodol_theme->admin_render()->build('page/store/category/addcat_v', $data);
 		if($this->input->post('submit')){
 			$this->exe_addcat();
 		}
@@ -45,7 +42,7 @@ class B_category extends MX_Controller {
 			'pH' => 'Edit Category',
 			'category' => $cat
 				);
-		$this->dodol_theme->render($data, 'back');
+		$this->dodol_theme->admin_render()->build('page/store/category/editcat_v', $data);
 		if($this->input->post('submit')){
 			$this->exe_editcat($id);
 		}
@@ -66,7 +63,7 @@ class B_category extends MX_Controller {
 		'mainLayer' => 'backend/page/store/category/listcat_v',
 		'cats' =>$cats,
 		);
-		$this->dodol_theme->render($data, 'back');
+		$this->dodol_theme->admin_render()->build('page/store/category/listcat_v', $data);
 		
 	}
 

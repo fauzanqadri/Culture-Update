@@ -23,7 +23,7 @@ class B_modularizer extends MX_Controller {
 		$render['mainLayer'] = 'backend/page/modularizer/create_v';
 		$render['pT'] = 'Create Widget';
 		$render['pH'] = 'Create Widget';
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/modularizer/create_v', $render);
 		// EXEC
 		if($this->input->post('create')):
 		$data = array(
@@ -77,10 +77,10 @@ class B_modularizer extends MX_Controller {
 		$render['widget'] = modules::run('modularizer/api_getbyid', $id);
 		$menuSource = array(array('anchor' => 'All Widget', 'link' => site_url('backend/modularizer/b_modularizer/browse')),array('anchor' => 'New Widget', 'link' => site_url('backend/modularizer/b_modularizer/create')));
 		$render['pageMenu'] = $this->dodol_theme->menu_rend($menuSource);
-		$render['mainLayer'] = 'backend/page/modularizer/Update_v';
+		$render['mainLayer'] = 'backend/page/modularizer/update_v';
 		$render['pT'] = 'Update Widget';
 		$render['pH'] = 'Update Widget';
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/modularizer/update_v', $render);
 	}
 	function browse(){
 		$this->load->library('barock_page');
@@ -110,7 +110,7 @@ class B_modularizer extends MX_Controller {
 		$render['pH'] = 'List Widget';
 		$render['pageTool'] = modules::run('backend/modularizer/b_modularizer/filter');
 		$render['installed'] = $this->dodol_widget->list_all();
-		$this->dodol_theme->render($render, 'back');
+		$this->dodol_theme->admin_render()->build('page/modularizer/browse_v', $render);
 		
 	}
 	function filter(){

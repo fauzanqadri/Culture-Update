@@ -54,6 +54,7 @@ $autoload['libraries'] = array(
 	'bug', 
 	'dodol', 
 	'parser', 
+	'template',
 	'firephp', 
 	'dodol_conf'
 	);

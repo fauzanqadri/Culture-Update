@@ -50,7 +50,7 @@ class category extends MX_Controller {
 		$q = $this->product_m->getProdByCatid($id);
 		$data['prods'] = $q['prodid'];
 		$data['mainLayer'] = 'store/page/category/cat_view_v';
-		$this->dodol_theme->render($data);
+		$this->dodol_theme->render()->build('page/category/cat_view_v', $data);
 	}
 	
 	
@@ -118,5 +118,14 @@ class category extends MX_Controller {
 		$del = $this->store_cat->deletecat($id);
 		return $del;
 	}
+	function some(){
+		$this->load->library('template');
+		$data = array('asuh' => 'koe');
+		$this->template
+		->set('foo', $data)
+		->set_theme('cu')
+		->set_layout('default')
+		->build('store/page/category/test', $data);
+	}
 
-}?>
+}

@@ -68,10 +68,11 @@ class Dodol {
 		return json_encode($this->objectToArray($objects));
 	}
 	function print_arrayRecrusive($array){
+		$array = (is_object($array)) ? $this->objectToArray($array) : $array;
 		$output = '';
 		foreach($array as $key => $value){
 			$output .= '<div class="box2 mb10"><span class="bold">'.$key.'</span> =';
-			if(is_array($value)){
+			if(is_array($value) || is_object($value)){
 				$output .= $this->print_arrayRecrusive($value);
 			}else{
 				$output .= $value;

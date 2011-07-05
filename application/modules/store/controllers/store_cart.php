@@ -133,7 +133,7 @@ class Store_cart extends MX_Controller {
 			'a' => $attribute,
 			'p' => $product
 			);
-		$this->load->view('store/misc/cart/addtocart_form_v', $data);
+		$this->dodol_theme->view('store/misc/cart/addtocart_form_v', $data);
 	}
 	function exe_updateCart($rowid, $newqty){
 		$item = $this->getCartItem($rowid);
@@ -345,7 +345,7 @@ class Store_cart extends MX_Controller {
 			'mainLayer' => 'store/page/cart/cartView_v',
 			'items' => $this->cart->contents(),
 			);
-		$this->dodol_theme->render($data);
+		$this->dodol_theme->render()->build('page/cart/cartView_v', $data);
 		$this->updateCart();
 	}
 	function destroy_cart(){
