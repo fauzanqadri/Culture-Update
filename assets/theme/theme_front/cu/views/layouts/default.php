@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Culture Update</title>
+<title><?=$this->config->item('site_name')?> <? if(isset($pT)){ echo ' | '.$pT ;}elseif(!isset($pT) && isset($pH)){echo ' | '.$pH;}?></title>
 
 <!--////////////////////////////
 		  GLOBAL ASSETS 
@@ -51,7 +51,7 @@
 		   THEME ASSETS 
 /////////////////////////////-->
 
-
+<?=modules::run('ajax/js_showmsg')?>
 <body id="<?=$this->router->class.'_'.$this->router->method;?>">
 
 	<div class="wrapper">

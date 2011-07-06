@@ -29,12 +29,12 @@ class Store_cart extends MX_Controller {
     			unset($param['attrb_key']);
     		}
     		$addToCart = $this->addToCart($param);
-    		if($addToCart['addtocart']== 'success'){
+    		if($addToCart['addtocart'] == 'success'){
     			$this->messages->add('succesfully add to cart', 'success');
-    			redirect(current_url());
+    			redirect('store/product/view/'.$this->input->post('id_prod'));
     		}else{
     			$this->messages->add('failed add to cart ', 'warning');
-    			redirect(current_url());	
+    			redirect('store/product/view/'.$this->input->post('id_prod'));	
     		}
     	}
 	}
