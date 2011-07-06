@@ -32,7 +32,7 @@ foreach($prods as $prod){
 	$stock = $p->stock;
 	?>
  <tr>
- 	<td><img src="<?=site_url('thumb/show/100-50-crop/dir/assets/product-img/'.$img->path)?>"></td>
+ 	<td><img src="<?=site_url('thumb/show/100-50-crop/dir/assets/store/product_img/'.$img->path)?>"></td>
     <td class="vTop">
 		<div class="prodDet">
 			<span class="left"><?=$p->name?></span><span class="right"><?=$p->sku?></span>

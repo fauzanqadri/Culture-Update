@@ -25,7 +25,7 @@ class Tester extends MX_Controller {
 		echo form_close();
 		if($this->input->post('upload')){
 		$this->load->library('upload');
-		$config['upload_path'] = './assets/product-img/';
+		$config['upload_path'] = './assets/store/product_img/';
 		$config['allowed_types'] = 'rar|gif|jpg|png|zip';
 		$config['max_size']	= '100000';
 		$config['overwrite'] = false;

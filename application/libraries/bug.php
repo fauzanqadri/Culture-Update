@@ -1,6 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Bug {
+include APPPATH . '/libraries/kint/Kint.class.php';
+class Bug extends Kint {
 	
 	var $msg = array();
 	
@@ -20,6 +21,11 @@ class Bug {
 		}else{
 			return false;
 		}
+		
+	}
+	function my_trace(){
+		parent::trace();
+		get_defined_vars();
 		
 	}
 	

@@ -53,6 +53,7 @@
 
 
 <body id="<?=$this->router->class.'_'.$this->router->method;?>">
+
 	<div class="wrapper">
 		<div class="inner_wrap ctr grid_960">
 			<div class="header">
@@ -100,9 +101,7 @@
 			<div class="clear"></div>
 		</div>
 		<div class="msg_debug">
-			<?
-			echo $this->bug->show();
-			?>
+		<?=$this->bug->my_trace();?>
 		</div>
 	</div>
 </div>

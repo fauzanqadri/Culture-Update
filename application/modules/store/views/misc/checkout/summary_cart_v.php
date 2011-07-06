@@ -6,7 +6,7 @@
 		 <div class="item left mr10 grid_240">
 			<div class="img_item left">
 				<?$img=modules::run('store/product/prodImg', $item['id'])?>
-	    	<img src="<?=site_url('thumb/show/60-70-crop/dir/assets/product-img/'.$img->path);?>">
+	    	<img src="<?=site_url('thumb/show/60-70-crop/dir/assets/store/product_img/'.$img->path);?>">
 			</div>
 			<div class="item_detail left">
 				<h6 class="font_myriad"><?=element('name', $item)?><small class="right"><?=element('id', $item)?></small></h6>

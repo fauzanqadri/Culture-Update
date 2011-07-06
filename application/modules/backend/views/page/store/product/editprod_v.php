@@ -230,7 +230,7 @@ $(document).ready(function(){
 				<div class="list_media_order">
 				<?foreach ($media as $med) {;?>
 					<div class="media_item left grid_150" id="<?=$med->id;?>">
-						<img src="<?=site_url()?>thumb/show/150-150-crop/dir/assets/product-img/<?=$med->path;?>" ><br/>
+						<img src="<?=site_url()?>thumb/show/150-150-crop/dir/assets/store/product_img/<?=$med->path;?>" ><br/>
 						<small><?=$med->name;?></small>
 						<div class="action right">
 						<a href="<?=site_url('backend/store/b_product/editmedia/'.$med->id);?>"<span class="right act edit"></span></a>
@@ -392,7 +392,7 @@ $(document).ready(function(){
 							$img = modules::run('store/product/prodImg', $rel->p_rel);
 							?>
 							<div id="<?=$rel->p_rel;?>" class="item mb10">
-								<div class="img_prod left mr5"><img src="<?=site_url('thumb/show/70-30-crop/dir/assets/product-img/'.$img->path)?>"/></div>
+								<div class="img_prod left mr5"><img src="<?=site_url('thumb/show/70-30-crop/dir/assets/store/product_img/'.$img->path)?>"/></div>
 								<div class="detail_prod left">
 								<?=$p->name;?>
 								</div>

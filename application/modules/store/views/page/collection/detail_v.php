@@ -1,6 +1,6 @@
 <div class="collection_info">
 	<div class="coll_bg">
-		<img src="<?=site_url('thumb/show/700-300-crop/dir/assets/collection_img/'.$coll->img_path);?>" />
+		<img src="<?=site_url('thumb/show/700-300-crop/dir/assets/store/collection_img/'.$coll->img_path);?>" />
 		<div class="cover_overlay"></div>
 		<div class="clear"></div>
 	</div>	

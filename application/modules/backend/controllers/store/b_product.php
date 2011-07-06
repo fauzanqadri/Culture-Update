@@ -175,7 +175,7 @@ class B_product extends MX_Controller {
 	
 		if($_FILES[$input_name]['name']){
 			$media = $this->product_m->getMediaById($idmedia);
-			//$current_media = './assets/product-img/'.$media->path;
+			//$current_media = './assets/store/product_img/'.$media->path;
 			$name_media = 'p_'.$media->prod_id.'_m_'.$media->id.'_'.$media->name;
 			$up = $this->product_m->uploadMedia($input_name,$name_media);
 			if (!isset($up['error'])){
@@ -214,7 +214,7 @@ class B_product extends MX_Controller {
 		endif;
 	}
 	function testdelete(){
-		unlink('/assets/product-img/p_245_kampret_23.jpg');
+		unlink('/assets/store/product_img/p_245_kampret_23.jpg');
 	}
 	// EXE Function
 	function exe_editprod($id){
@@ -433,7 +433,7 @@ class B_product extends MX_Controller {
 				$data['prods'] .= '
 					<div class="rel_item mb10"  id="'.$prod->id.'">
 						<div class="img_prod left mr5"><img
-						 src="'.site_url('thumb/show/70-30-crop/dir/assets/product-img/'.$img->path).'"/></div>
+						 src="'.site_url('thumb/show/70-30-crop/dir/assets/store/product_img/'.$img->path).'"/></div>
 						<div class="detail_prod left">
 						'.$prod->name.'
 						</div>
@@ -458,7 +458,7 @@ class B_product extends MX_Controller {
 		$img = modules::run('store/product/prodImg', $id);
 		$data['prod'] = '
 			<div id="'.$prod->id.'" class="item mb10">
-				<div class="img_prod left mr5"><img src="'.site_url('thumb/show/70-30-crop/dir/assets/product-img/'.$img->path).'"/></div>
+				<div class="img_prod left mr5"><img src="'.site_url('thumb/show/70-30-crop/dir/assets/store/product_img/'.$img->path).'"/></div>
 				<div class="detail_prod left">
 				'.$prod->name.'
 				</div>

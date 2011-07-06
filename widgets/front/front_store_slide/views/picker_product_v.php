@@ -20,7 +20,7 @@
 <?$prod = modules::run('store/product/api_getbyid', $prod , array('media'), 'l_desc');?>
 	<div class="item">
 		<div class="item_img">
-			<a href="<?=site_url('store/product/view/'.element('product', $prod)->id);?>"><img class="prod_img ctr" src="<?=site_url('thumb/show/310-320-crop/dir/assets/product-img/'.element('media', $prod)->path);?>" alt="<?=element('product', $prod)->name?>"></a>
+			<a href="<?=site_url('store/product/view/'.element('product', $prod)->id);?>"><img class="prod_img ctr" src="<?=site_url('thumb/show/310-320-crop/dir/assets/store/product_img/'.element('media', $prod)->path);?>" alt="<?=element('product', $prod)->name?>"></a>
 			
 		</div>
 		<div class="item_detail">

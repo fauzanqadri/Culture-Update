@@ -10,7 +10,7 @@
 <div class="item <?=$type;?>">
 	<div class="coll_image grid_680">
 	<a href="<?=site_url('store/collection/detail/'.$coll->id.'/'.$this->dodol_theme->nice_strlink($coll->name))?>">
-		<img src="<?=site_url('thumb/show/680-250-crop/dir/assets/collection_img/'.$coll->img_path);?>" />
+		<img src="<?=site_url('thumb/show/680-250-crop/dir/assets/store/collection_img/'.$coll->img_path);?>" />
 	</a>
 	</div>
 	<div class="coll_detail  grid_250">

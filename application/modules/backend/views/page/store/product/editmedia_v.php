@@ -54,7 +54,7 @@
 			
 			</div>
 		<div class="grid_300 right">
-			<img class="grid_280" src="<?=base_url()?>/assets/product-img/<?=$media->path;?>">
+			<img class="grid_280" src="<?=base_url()?>/assets/store/product_img/<?=$media->path;?>">
 		</div>
 		<div class="clear"></div>
 		

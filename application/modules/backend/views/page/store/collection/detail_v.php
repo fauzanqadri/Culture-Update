@@ -3,8 +3,8 @@ $coll = $data['main'];
 $items = $data['ref'];
 ?>
 <div class="mainData grid_550 left">
-	<div class="collection_img">
-		<img width="550" src="<?=site_url('thumb/show/550-100-crop/dir/assets/collection_img/'.$coll->img_path);?>">
+	<div class="store/collection_img">
+		<img width="550" src="<?=site_url('thumb/show/550-100-crop/dir/assets/store/collection_img/'.$coll->img_path);?>">
 	</div>
 	<div class="collection_desc mt20">
 		<?=$coll->description?>
@@ -25,7 +25,7 @@ $items = $data['ref'];
 		$img = modules::run('store/product/prodImg', $item->product_id);
 		?>
 		<div id="<?=$item->id;?>" class="coll_item mb10">
-			<div class="img_prod left mr5"><img src="<?=site_url('thumb/show/70-30-crop/dir/assets/product-img/'.$img->path)?>"/></div>
+			<div class="img_prod left mr5"><img src="<?=site_url('thumb/show/70-30-crop/dir/assets/store/product_img/'.$img->path)?>"/></div>
 			<div class="detail_prod left">
 			<?=$p->name;?>
 			</div>

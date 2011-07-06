@@ -19,7 +19,7 @@
 						    	<div class="left mr5 itemImg">
 						    	
 									<?$img=modules::run('store/product/prodImg', $item->id_prod)?>
-						    		<img src="<?=site_url('thumb/show/50-50-crop/dir/assets/product-img/'.$img->path);?>">
+						    		<img src="<?=site_url('thumb/show/50-50-crop/dir/assets/store/product_img/'.$img->path);?>">
 
 						    	</div>
 						    	<div class="itemDetail left">

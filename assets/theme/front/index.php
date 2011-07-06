@@ -31,22 +31,22 @@
 		<div class="featured_prod">
 			<div class="item">
 				<div class="prod_img">
-					<img src="http://localhost/culture-update/thumb/show/300-300-crop/dir/assets/product-img/p_286_m_100_fold1.jpg">
+					<img src="http://localhost/culture-update/thumb/show/300-300-crop/dir/assets/store/product_img/p_286_m_100_fold1.jpg">
 				</div>
 			</div>
 				<div class="item">
 					<div class="prod_img">
-						<img src="http://localhost/culture-update/thumb/show/300-300-crop/dir/assets/product-img/p_285_m_99_ALL.jpg">
+						<img src="http://localhost/culture-update/thumb/show/300-300-crop/dir/assets/store/product_img/p_285_m_99_ALL.jpg">
 					</div>
 				</div>
 					<div class="item">
 						<div class="prod_img">
-							<img src="http://localhost/culture-update/thumb/show/300-300-crop/dir/assets/product-img/p_284_m_98_Main.jpg">
+							<img src="http://localhost/culture-update/thumb/show/300-300-crop/dir/assets/store/product_img/p_284_m_98_Main.jpg">
 						</div>
 					</div>
 						<div class="item">
 							<div class="prod_img">
-								<img src="http://localhost/culture-update/thumb/show/300-300-crop/dir/assets/product-img/p_283_m_97_red.jpg">
+								<img src="http://localhost/culture-update/thumb/show/300-300-crop/dir/assets/store/product_img/p_283_m_97_red.jpg">
 							</div>
 						</div>
 		</div>

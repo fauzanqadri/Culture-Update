@@ -3,7 +3,7 @@
 <div class="productSnap">
 	<div class="productImg">
 		<? if($media){ ?>
-		<img src="<?=site_url('thumb/show/240-320-crop/dir/assets/product-img/'.$media->path);?>" alt="<?=$media->name?>">
+		<img src="<?=site_url('thumb/show/240-320-crop/dir/assets/store/product_img/'.$media->path);?>" alt="<?=$media->name?>">
 		<?}?>
 		<div class="w_50 ctr snap_tool">
 		  <div class="triangle ctr"></div>

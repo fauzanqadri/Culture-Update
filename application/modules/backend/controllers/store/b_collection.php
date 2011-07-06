@@ -79,7 +79,7 @@ class B_collection extends MX_Controller {
 					$img = modules::run('store/product/prodImg', $prod->id);
 					$final_item .= '
 					<div class="coll_item mb10" id="'.$prod->id.'">
-						<div class="img_prod left mr5"><img src="'.site_url('thumb/show/70-30-crop/dir/assets/product-img/'.$img->path).'"/></div>
+						<div class="img_prod left mr5"><img src="'.site_url('thumb/show/70-30-crop/dir/assets/store/product_img/'.$img->path).'"/></div>
 						<div class="detail_prod left">
 						'.$prod->name.'
 						</div>
@@ -112,7 +112,7 @@ class B_collection extends MX_Controller {
 				$img = modules::run('store/product/prodImg', $this->input->post('idProd'));
 				$output = '
 				<div class="coll_item mb10" id="'.$add.'">
-					<div class="img_prod left mr5"><img src="'.site_url('thumb/show/70-30-crop/dir/assets/product-img/'.$img->path).'"/></div>
+					<div class="img_prod left mr5"><img src="'.site_url('thumb/show/70-30-crop/dir/assets/store/product_img/'.$img->path).'"/></div>
 					<div class="detail_prod left">
 					'.$p->name.'
 					</div>

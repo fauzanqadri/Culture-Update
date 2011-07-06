@@ -248,7 +248,7 @@ class Product_m extends CI_Model {
 	}
 	function uploadMedia($input_name, $dest_file_name){
 		$this->load->library('upload');
-		$config['upload_path'] = './assets/product-img/';
+		$config['upload_path'] = './assets/store/product_img/';
 		$config['allowed_types'] = 'gif|jpg|png';
 		$config['file_name'] = $dest_file_name;
 		$config['max_size']	= '100000';
@@ -269,7 +269,7 @@ class Product_m extends CI_Model {
 	function deleteMedia($id){
 		$q = $this->getMediaById($id);
 			if($q){
-				$path = './assets/product-img/'.$q->path;
+				$path = './assets/store/product_img/'.$q->path;
 				if(file_exists($path)){
 					$del = unlink($path);
 					if ($del){
@@ -286,9 +286,9 @@ class Product_m extends CI_Model {
 		$new_name = str_replace(' ', '_', $new);
 		$q = $this->getMediaById($id);
 			if($q){
-				$path = './assets/product-img/'.$q->path;
+				$path = './assets/store/product_img/'.$q->path;
 				$ext  = pathinfo($path);
-				$new  = './assets/product-img/'.$new_name.'.'.$ext['extension'];
+				$new  = './assets/store/product_img/'.$new_name.'.'.$ext['extension'];
 				if(file_exists($path)){
 					$ren = rename($path, $new);
 					if ($ren){
@@ -435,7 +435,7 @@ class Product_m extends CI_Model {
 	function uploadfile($field, $file_name){
 		$this->load->library('upload');
 		$config = array(
-			'upload_path' 	=> './assets/product-img/',
+			'upload_path' 	=> './assets/store/product_img/',
 			'allowed_types' => 'gif|jpg|png',
 			'file_name'		=> $file_name,
 			'max_size'		=> '100000',

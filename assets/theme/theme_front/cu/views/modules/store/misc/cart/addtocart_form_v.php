@@ -2,20 +2,7 @@
 	<form method="post" id="buyProd" action="<?=current_url();?>">
 		<div class="attrbProd">
 			
-	<? if($a){?>
-		<?/* next task, for next version
-		// I think its, pretty simpler.. heheheh
-		$attributes = $this->cart->extractAttrib($a);
-			foreach($attributes['attribute'] as $index => $value){;?>
-				<select name="<?=$index?>">
-					<option value="nope"><?=$index?></option>
-					<?foreach($value as $v){?>
-						<option value="<?=$v;?>"><?=$v?></option>
-			<?}?>
-				</select>
-		<?}*/?>
-		
-		
+	<? if($a){?>	
 	<?
 	$colors = $this->cart->loadAttrib($a, 'c');
 	$sizes = $this->cart->loadAttrib($a, 's');
@@ -41,8 +28,7 @@
 		<div class="clear"></div>
 		<br/>
 		<input type="hidden" value="<?=$p->id;?>" name="id_prod"/>
-		<input type="submit" name="addcart" value="Add to Cart" class="button"/>
-		
+		<input type="submit" name="addcart" value="Add to Cart" class="button"/>	
 		
 	</form>
     </div>

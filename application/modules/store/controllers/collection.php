@@ -43,7 +43,7 @@ class Collection extends MX_Controller {
 	function exe_create($data) {
 		if($data['img_file']){
 			$config['file_name']  = $data['name'];
-			$config['upload_path'] = './assets/collection_img/';
+			$config['upload_path'] = './assets/store/collection_img/';
 			$config['allowed_types'] = 'gif|jpg|png';
 			$config['max_size']	= '10000';
 			$up = $this->load->library('upload', $config);
@@ -72,7 +72,7 @@ class Collection extends MX_Controller {
 	function exe_update($id, $data){
 			if(isset($data['img_file'])){
 				$config['file_name']  = $data['name'];
-				$config['upload_path'] = './assets/collection_img/';
+				$config['upload_path'] = './assets/store/collection_img/';
 				$config['allowed_types'] = 'gif|jpg|png';
 				$config['max_size']	= '10000';
 				$up = $this->load->library('upload', $config);
