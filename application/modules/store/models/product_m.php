@@ -196,6 +196,22 @@ class Product_m extends CI_Model {
 	
 	/////////// Product Attribute ///////////
 	function addAttrib($data){
+		$source = str_replace(' ', '',element('attribute', $data) );
+		if(count($prepare_sort = explode(';',$source)) > 1):
+			foreach ($prepare_sort as $pre){
+				list($key, $value) = explode(':', $pre);
+				$attribute[$key] = $value;
+			}
+			$final_attribute = '';
+		
+			ksort($attribute);
+			foreach($attribute as $key=>$value){
+				$final_attribute .= $key.':'.$value.';';
+			}
+			$data['attribute'] = substr($final_attribute, 0 , -1);
+		endif;
+		
+		
 		$q = $this->db->insert('store_product_attrb', $data);
 		if($q){
 			return true;
@@ -204,6 +220,21 @@ class Product_m extends CI_Model {
 		}	
 	}
 	function editAttrib($data, $id){
+		$source = str_replace(' ', '',element('attribute', $data) );
+		if(count($prepare_sort = explode(';',$source)) > 1):
+			foreach ($prepare_sort as $pre){
+				list($key, $value) = explode(':', $pre);
+				$attribute[$key] = $value;
+			}
+			$final_attribute = '';
+		
+			ksort($attribute);
+			foreach($attribute as $key=>$value){
+				$final_attribute .= $key.':'.$value.';';
+			}
+			$data['attribute'] = substr($final_attribute, 0 , -1);
+		endif;
+		
 		$this->db->where('id', $id);
 		$q = $this->db->update('store_product_attrb', $data);
 		if($q){
@@ -352,9 +383,9 @@ class Product_m extends CI_Model {
 	function create($data){
 		$this->db->where('sku', element('sku', $data));
 		$pre = $this->db->get('store_product');
-		if($pre->num_rows() > 0){
+		if($pre->num_rows() == 0){
 			if($this->db->insert('store_product', $data)){
-				return $this->getbyid($this->db->insert_id(), false, false);
+				return $this->getbyid($this->db->insert_id());
 			}else{
 				return false;
 			}

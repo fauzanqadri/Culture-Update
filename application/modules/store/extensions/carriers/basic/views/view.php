@@ -1,0 +1,2 @@
+<p>Sorry.. We can't determine your shipping cost, just click next and we'll confirm about the shipping cost after you place the order, thanks for your inconvenience</p>
+<input type="hidden" name="rate_id" value="basic">

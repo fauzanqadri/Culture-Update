@@ -101,7 +101,7 @@ class B_nav extends MX_Controller {
 		$render['pageMenu'] = $this->dodol_theme->menu_rend($menuSource);
 		$render['nav'] = modules::run('nav/getbyid', $id);
 		$render['mainLayer'] = 'backend/page/nav/add_item_v';
-		$this->dodol_theme->admin_render('page/nav/add_item_v', $render);
+		$this->dodol_theme->admin_render()->build('page/nav/add_item_v', $render);
 		// EXEUTION
 		if($this->input->post('create')):
 			$data = array(

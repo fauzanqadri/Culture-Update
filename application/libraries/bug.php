@@ -24,6 +24,7 @@ class Bug extends Kint {
 		
 	}
 	function my_trace(){
+		echo $this->show();
 		parent::trace();
 		get_defined_vars();
 		

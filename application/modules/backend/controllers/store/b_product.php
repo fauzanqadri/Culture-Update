@@ -336,12 +336,12 @@ class B_product extends MX_Controller {
 			'meta_desc' => $this->input->post('p_meta_desc'),
 			'meta_key'  => $this->input->post('p_meta_key')
 			);
-		$ins = $this->product_m->addProduct($mainInfo);
+		$ins = $this->product_m->create($mainInfo);
 		if($ins){
 			// insert relation
 			if($this->input->post('product_rel') != null){
 				$rel_array = explode(',', $this->input->post('product_rel'));
-				$this->product_m->addRel($ins['id'], $rel_array);
+				$this->product_m->addRel(element('product', $ins)->id, $rel_array);
 				
 			}
 			
@@ -350,7 +350,7 @@ class B_product extends MX_Controller {
 				for($i=0;$i<$num_attrb;$i++){
 					if($_POST['attribute'][$i]!= null){
 						$dataAttrb = array(
-							'prod_id'   => $ins['id'],
+							'prod_id'   => element('product', $ins)->id,
 							'attribute' => $_POST['attribute'][$i],
 							'price_opt' => $_POST['price_opt'][$i],
 							'stock'     => $_POST['stock'][$i]
@@ -380,17 +380,17 @@ class B_product extends MX_Controller {
 			
 				//check if file chosen to upload
 				if($_FILES['p_media_file_'.$i_fl]['name'] && $_POST['p_media_name'][$i]){
-					$nameMedia =  'p_'.$ins['id'].'_'.$_POST['p_media_name'][$i];
+					$nameMedia =  'p_'.element('product', $ins)->id.'_'.$_POST['p_media_name'][$i];
 					$upload = $this->product_m->uploadMedia('p_media_file_'.$i_fl,$nameMedia );
 						if(isset($upload['error'])){
 							$this->messages->add('product with name '.$_POST['p_media_name'][$i].' failed to be uploaded ' , 'warning');
 						}else{
 						$insMediaData = array(
-									'prod_id' => $ins['id'],
-									'name'    => $_POST['p_media_name'][$i],
-									'publish'  => $pub,
-									'default'  => $def,
-									'path'    => $upload['file_name'],
+									'prod_id' 	=>element('product', $ins)->id,
+									'name'    	=> $_POST['p_media_name'][$i],
+									'publish'  	=> $pub,
+									'default'  	=> $def,
+									'path'    	=> $upload['file_name'],
 							);
 							$insert = $this->product_m->addMedia($insMediaData);
 							if($insert){

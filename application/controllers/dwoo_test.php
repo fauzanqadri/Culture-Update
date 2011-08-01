@@ -5,6 +5,7 @@ class Dwoo_test extends MX_Controller {
 	var $data;
     function index()
     {
+
     	$this->load->library('parser');
 		$this->data->asuh = 'kampret';
 		$this->data->anjing = 'asuh';

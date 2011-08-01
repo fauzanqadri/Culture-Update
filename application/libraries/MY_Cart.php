@@ -131,6 +131,30 @@ class MY_Cart extends CI_Cart {
 			return $attrb;		
 			
 	}
+	function load_attr($a){
+		$storage = array();
+		
+		foreach($a as $att){
+				$prepare_sort = explode(';',$att->attribute) ;
+					foreach ($prepare_sort as $pre){
+						list($key, $value) = explode(':', $pre);
+						$attribute[$key] = $value;
+					}
+				array_push($storage, $attribute);
+		}
+	
+		return call_user_func_array('merge',$storage);
+		
+		
+	}
+	function reverse_attr($array){
+		$output = '';
+		ksort($array);
+		foreach($array as $key=>$value){
+			$output .= $key.':'.$value.';';
+		}
+		return substr($output, 0 , -1);
+	}
 	function extractAttrib($data){
 		$i = 0;
 		foreach($data as $dt){
@@ -193,6 +217,45 @@ class MY_Cart extends CI_Cart {
 			$rate = 1;		
 		}		
 		return $rate;		
+	}
+	function conv($currencyfrom,$currencyto){
+       	$from   = $currencyfrom;
+		$to     = $currencyto;
+	    $url = 'http://finance.yahoo.com/d/quotes.csv?e=.csv&f=sl1d1t1&s='. $from . $to .'=X';
+	    $handle = @fopen($url, 'r');
+	    if ($handle) {
+	            $result = fgets($handle, 4096);
+	            fclose($handle);
+	    }
+	     $allData = explode(',', $result); /* Get all the contents to an array */
+	     $rate = $allData[1];
+	     return $rate;
 	}		
-		
+	function weight(){
+			$index = 0;
+			if ($this->total_items() != 0) :
+			foreach($this->contents() as $item){
+				$param = array('id' => $item['id'], 'select' => 'weight');
+				$prod = modules::run('store/product/detProd', $param);
+				$totalWeight[$index] = $prod['prod']->weight*$item['qty'];
+				$index++;
+			}
+			$finalWeight = array_sum($totalWeight);
+			return $finalWeight;
+			else :
+			return 0;
+			endif;
+	}
+	function shipping_option(){
+		$this->_ci->load->helper('store/store_carrier');
+		return store_carrier_helper::registry('get_rate');
+	}
+	function shipping_choose($rate_id){
+		$this->_ci->load->helper('store/store_carrier');
+		store_carrier_helper::registry('choose_rate', $rate_id);
+	}
+	function payment_option(){
+		$this->_ci->load->helper('store/store_payment');
+		store_payment_helper::registry('get_option');
+	}
 }		

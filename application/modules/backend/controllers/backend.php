@@ -10,7 +10,6 @@ class Backend extends MX_Controller {
 		modules::run('user/auth/userRoleCheck', 'owner');
 	}
 	
-	
 	function index() {
 		$url = $this->uri->segment(4);
 		$u = modules::run('user/profiledata', $this->session->userdata['login_data']['user_id']);

@@ -179,6 +179,77 @@ class Tester extends MX_Controller {
 	function asuh(){
 		echo 'Kampret';
 	}
+	function ups(){
+	
+		$param = array(
+			's_country' 	=> 'ID',
+			's_zip'  		=> '15132',
+			't_country' 	=> 'US',
+			't_zip'			=> '10011',
+			'weight'		=> '1',
+			'pickup'		=> '01',
+			'residential' 	=> '0',
+			'submit'		=> 'Calculate Shipping Cost'
+		);
+		
+		$this->load->library('curl');
+		$this->load->helper('dodol_dom');
+		$this->curl->create('http://www.neox.net/ups/upsrate.php');
+		$this->curl->option(CURLOPT_BUFFERSIZE, 10);
+		$this->curl->post($param);
+		$result = $this->curl->execute();
+		
+		$html = str_get_html($result);
+		//echo $result;
+		$td = $html->find('table', 0);
+		$output = array();
+		$index = array();
+		//GETTING INDEX of EACH Value Information
+		foreach($td->find('tr th') as $row){
+			
+					array_push($index, strtolower(str_replace(' ', '_', $row->innertext)));
+			
+		}
+		// CHECK That everything works good :)
+		if(element(0, $index) != 'service'){
+			return false;
+		}
+		// EXTRACT EACH RATE VALUE
+		foreach($td->find('tr') as $row){
+				$value = array();
+				if($row->find('td') != null):
+					foreach($row->find('td') as $item){
+						$string = ($item->innertext == null) ? '0' : $item->innertext ;
+						array_push($value, str_replace('$', '', $item->innertext));
+					}
+					array_push($output, array_combine($index, $value));
+				endif;
+		}
+		echo $this->dodol->print_arrayRecrusive($output);
+		// ADAPT WITH SITE CURRENCY
+	
+		if($this->cart->currency() != 'USD'):
+			$rate = $this->cart->conv('USD', 'IDR');
+			$new_output = array();
+			foreach ($output as $index => $val){
+				
+				foreach($val as $key => $value){
+						$money = array('basic_charge', 'option_charge', 'total_charge');
+						$pre = array();
+						if(in_array($key, $money)){
+							$new[$key] = $this->cart->show_price($value*$rate);
+						}else{
+							$new[$key] = $value;
+						}
+				
+				}
+				array_push($new_output, $new);
+			}
+			echo $this->dodol->print_arrayRecrusive($new_output);
+		endif;
+		
+
+	}
 
 
 

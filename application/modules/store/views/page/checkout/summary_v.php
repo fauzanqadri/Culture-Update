@@ -107,10 +107,9 @@
 		</div>
 		<div class="data_rowSet">
 				<div class="label">Shipping Carrier </div>
-				<div class="data"><?=$this->session->userdata['shipping_info']['carrier']?> - <?=$this->jne->service($this->session->userdata['shipping_info']['type'])?> | <?=$this->session->userdata['shipping_info']['city']?></div>
+				<div class="data"><?=$this->session->userdata['shipping_info']['carrier']?> - <?=$this->session->userdata['shipping_info']['service']?></div>
 				<div class="clear"></div>
 		</div>
-		
 	</div>
 	<div class="customer_note mt20">
 		<form action="" method="post">
@@ -119,8 +118,7 @@
 			<textarea name="customer_note" class="grid_300" rows="8"></textarea>
 			</div>
 			<div class="grid_300 right captcha">
-				<?					$this->recaptcha->show_it();
-				?>
+				<?$this->recaptcha->show_it();?>
 				<br class="clear"/>
 					<input type="submit" name="process" class="button right" value="Process">
 				<br class="clear"/>

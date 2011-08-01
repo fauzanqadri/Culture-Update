@@ -80,16 +80,9 @@ class Product extends MX_Controller {
 		}else{
 			$disc_nominal = 0;
 		}
-		if($id_attrb){
-			$attrb = $this->product_m->getAttrbById($id_attrb);
-			if($attrb){
-				$price_addon = $attrb->price_opt;
-			}else{
-				$price_addon = 0;
-			}
-		}else{
+	
 			$price_addon = 0;
-		}
+	
 		/*next task
 		if($p->currency != $this->config->item('currency') && !$this->session->userdata('currency') ){
 		$new_rate = $this->yh_conv->conv($p->currency, $this->config->item('currency') );

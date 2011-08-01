@@ -1,4 +1,0 @@
-.picker_product {margin-bottom:10px}
-.picker_product .item { float:left; width: 310px; height:320px; margin:0px 3px; position: relative;overflow: hidden;}
-.picker_product .item .item_detail {height:100px;background:red; width: 290px; padding:10px; position: absolute;bottom:-70px;
-}

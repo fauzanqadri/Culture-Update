@@ -75,8 +75,8 @@ class Store extends MX_Controller {
 		parse_str($_SERVER['QUERY_STRING'], $_GET); 
 		$this->input->_clean_input_data($_GET);
 		$state = $this->input->get('cr');
-		$this->load->helper('store/carrier');
-		return carrier_helper::load($state);
+		$this->load->helper('store/store_carrier');
+		return store_carrier_helper::load($state);
 	}
 
 }?>

@@ -32,7 +32,7 @@ class Page extends MX_Controller {
 
 		$render['loadSide'] = false;
 		$render['mainLayer'] = 'page/landingpage_v';
-		$this->dodol_theme->render()->build('landingpage_v', $render);
+		$this->dodol_theme->render()->set_layout('extend/front_page')->build('landingpage_v', $render);
 	}
 	// API ///
 

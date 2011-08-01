@@ -28,6 +28,8 @@ class Widget extends MX_Controller {
 			<li><a class="ui-corner-top" href="'.site_url('backend/nav/b_nav/browse').'">Navigation</a></li>
 			<li><a class="ui-corner-top" href="'.site_url('backend/conf/b_conf/browse').'">Configuration</a></li>
 			<li><a class="ui-corner-top" href="'.site_url('backend/modularizer/b_modularizer/browse').'">Widget</a></li>
+<li><a class="ui-corner-top" href="'.site_url('backlogout').'">Logout</a></li>
+
 			<div class="clear"></div>
 				</ul>
 		

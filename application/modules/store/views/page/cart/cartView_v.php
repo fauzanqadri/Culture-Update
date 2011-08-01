@@ -59,7 +59,7 @@
     	<strong><a href="<?=site_url('store/product/view/'.$item['id']);?>" alt="<?=$item['name']?>" ><?=$item['name']?></a></strong>
     	<?if ($this->cart->has_options($item['rowid']) == true){?>
     	<div class="horline"></div>
-    	<?echo 'color : '.$item['options']['c'].', size :'.$item['options']['s'];?>
+    	<?=$this->cart->reverse_attr($item['options']);?>
 
     	<?}?>
     	</div>

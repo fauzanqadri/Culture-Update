@@ -23,19 +23,23 @@ class Store_cart extends MX_Controller {
     	if($this->input->post('addcart')){
     		$param = array('id_prod' => $this->input->post('id_prod'), 'qty' => $this->input->post('qty'));
     		if($this->input->post('have_attrb') == 'y'){
-    		$attrb = 'c:'.$this->input->post('c').';s:'.$this->input->post('s');
-    		$param['attrb_key'] = $attrb;
+    			$attrb = $this->cart->reverse_attr(ddl_post_filter('attr_'));
+    			$param['attrb_key'] = $attrb;
     		}else{
     			unset($param['attrb_key']);
     		}
     		$addToCart = $this->addToCart($param);
-    		if($addToCart['addtocart'] == 'success'){
+    		
+			if(element('addtocart', $addToCart)){
+				$this->dodol->print_arrayRecrusive($addToCart);
     			$this->messages->add('succesfully add to cart', 'success');
     			redirect('store/product/view/'.$this->input->post('id_prod'));
     		}else{
-    			$this->messages->add('failed add to cart ', 'warning');
+				$this->messages->add('failed add to cart ', 'warning');
     			redirect('store/product/view/'.$this->input->post('id_prod'));	
     		}
+			
+			
     	}
 	}
 	function ajax_buyProd(){
@@ -282,7 +286,7 @@ class Store_cart extends MX_Controller {
 				$options = $this->addon_store->hackAttrib($attrb->attribute);
 				$price = modules::run('store/product/prod_price', $param['id_prod'], $attrb->id);
 				$rowid = $this->is_in_cart($param['id_prod'], $attrb->id);
-				$ins_data['price']   = $price['final'];
+				$ins_data['price']   = $price['origin'];
 				$ins_data['options'] = $options;
 				$ins_data['id_attrb'] = $attrb->id;
 				$check_param['id_attrb'] = $attrb->id;

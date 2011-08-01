@@ -75,10 +75,10 @@ class Checkout extends MX_Controller {
 				'ship_data'  => $this->cart->shipto_info,
 				//'loadSide' => false
 				);
-			$this->dodol_theme->render()->build('checkout/summary_cart', $data);
+			$this->dodol_theme->render()->build('page/checkout/buyerinfo_v', $data);
 		
 			if($this->input->post('submit')){
-				/*
+				
 				$this->load->library('form_validation');
 				// serialize customer information
 					$this->form_validation->set_rules('first_name', 'first name', 'required');
@@ -102,9 +102,9 @@ class Checkout extends MX_Controller {
 					//redirect('store/checkout/buyerinfo');
 					return false;
 				}else{
-				*/
+				
 					$this->exe_buyerinfo();
-				//}
+				}
 				
 			}
 			
@@ -296,6 +296,7 @@ class Checkout extends MX_Controller {
 						$this->session->sess_write();
 						redirect('store/checkout/shipping_method?tpl=checkout');
 					}
+				
 			}
 			// if the email not yet taken by other customer
 			else{
@@ -344,42 +345,23 @@ class Checkout extends MX_Controller {
 	 * @author Zidni Mubarock
 	 */
 	function shipping_method(){	
-	// only can accessed if already have customer_info data or shito_info data
-	if($this->cart->customer_info || $this->cart->shipto_info){
-		if($this->cart->shipto_info){
-			$buyer_info = $this->cart->shipto_info;
-		}else{
-			$buyer_info = $this->cart->customer_info;
+		$buyer_info = ($this->cart->shipto_info) ? $this->cart->shipto_info : $this->cart->customer_info;
+		if(!$buyer_info) {
+			redirect('store/checkout/buyerinfo?tpl=checkout');
 		}
-		// if already have shipping_info fee, but customer_info city, country id change
-		// and unmacth with city,country on shipping info, so delete it, and create new one;
-		if($this->cart->shipping_info){
-			if($this->cart->shipping_info['city'] != $buyer_info['city'] || $this->cart->shipping_info['country'] != $buyer_info['country_id']){
-				$this->cart->destroy_data('shipping_info');
-			}
-			
-		}
-		
-		
-		$rates = false;
-		// if order send to indonesia; jne will apply
-		if($buyer_info['country_id'] == 100 && $buyer_info['city_code'] != null){
-			$rates = modules::run('store/shipping/jne');
-		}
-		// do else here 
-		$data['pT'] = 'Checkout - Shipping Method';
-		$data['buyer_info'] = $buyer_info;
-		$data['shipping_rates'] = $rates;
-		$data['cart'] = modules::run('store/checkout/summary_cart');
-		$data['mainLayer'] = 'store/page/checkout/shipping_method_v';
-		
-		$this->dodol_theme->render()->build('page/checkout/shipping_method_v', $data);
 		if($this->input->post('next')){
-			$this->exe_shipping_method();
+			modules::run('store/checkout/exe_shipping_method');
+		}else{
+			
+		
+				$data['pT'] = 'Checkout - Shipping Method';
+				$data['buyer_info'] = $buyer_info;
+				$data['cart'] = modules::run('store/checkout/summary_cart');
+				$data['mainLayer'] = 'store/page/checkout/shipping_method_v';
+		
+				$this->dodol_theme->render()->build('page/checkout/shipping_method_v', $data);
+		
 		}
-	}else{
-		redirect('store/checkout/buyerinfo?tpl=checkout');
-	}
 	}
 	/**
 	 * exe_shipping_method
@@ -388,24 +370,11 @@ class Checkout extends MX_Controller {
 	 * @author Zidni Mubarock
 	 */
 	function exe_shipping_method(){
-			if($this->cart->shipto_info){
-				$buyer_info = $this->cart->shipto_info;
-			}else{
-				$buyer_info = $this->cart->customer_info;
-			}
-			if(!$this->session->userdata('shipping_info') || $this->input->post('id_ship_rate')){
-			$id_rate = $this->input->post('id_ship_rate');
-			$shipping_rate = modules::run('store/shipping/jne', $id_rate);
-				if($shipping_rate){
-					redirect('store/checkout/payment?tpl=checkout');
-				}else{
-					return false;
-				}
-			}elseif(!$this->session->userdata('shipping_info') && !$this->input->post('id_ship_rate')){
-				return false;
-			}elseif($this->session->userdata('shipping_info') && !$this->input->post('id_ship_rate')){
-				redirect('store/checkout/payment?tpl=checkout');
-			}
+		$this->session->unset_userdata('shipping_info');
+		$this->load->helper('store/store_carrier');
+		store_carrier_helper::registry('choose_rate');
+		redirect('store/checkout/payment?tpl=checkout');
+	
 	}
 	/**
 	 * payment page
@@ -414,21 +383,23 @@ class Checkout extends MX_Controller {
 	 * @author Zidni Mubarock
 	 */	
 	function payment(){
-
-	if($this->cart->shipping_info){
-		$data= array(
-			'mainLayer' => 'store/page/checkout/payment_v',
-			'pT'        => 'Checkout - Payment Method',
-			'cart'      => modules::run('store/checkout/summary_cart'),
-		);
-		$this->dodol_theme->render()->build('page/checkout/payment_v', $data);
-		if($this->input->post('next')){
-			$this->exe_payment();
-		}
+	//$this->session->unset_userdata('shipping_info');
+		if($this->cart->shipping_info){
 		
-	}else{
-		redirect('store/checkout/shipping_method?tpl=checkout');
-	}
+				$data= array(
+					'mainLayer' => 'store/page/checkout/payment_v',
+					'pT'        => 'Checkout - Payment Method',
+					'cart'      => modules::run('store/checkout/summary_cart'),
+				);
+		
+				$this->dodol_theme->render()->build('page/checkout/payment_v', $data);
+		
+				if($this->input->post('next')){
+					$this->exe_payment();
+				}		
+		}else{
+			redirect('store/checkout/shipping_method?tpl=checkout');
+		}
 	}
 	/**
 	 * execution for payment page
@@ -437,22 +408,9 @@ class Checkout extends MX_Controller {
 	 * @author Zidni Mubarock
 	 */
 	function exe_payment(){
-		$method = $this->input->post('payment_method');
-		if($method || !$this->cart->payment_info ){
-			$data = array(
-				'method' => $method,
-				 );
-			$ins = array('payment_info' => $data);
-			$this->cart->write_data($ins);
-			//$this->session->userdata['checkout_step']['payment_info'] = true;
-			//$this->session->sess_write();
-			redirect('store/checkout/summary?tpl=checkout');
-		
-		}elseif(!$method && $this->session->userdata('payment_info')){
-				redirect('store/checkout/summary?tpl=checkout');
-		}else{
-			return false;
-		}
+		$this->load->helper('store/store_payment');
+		store_payment_helper::registry('choose_option');
+		redirect('store/checkout/summary?tpl=checkout');
 	}
 	
 	/**
@@ -462,7 +420,10 @@ class Checkout extends MX_Controller {
 	 * @author Zidni Mubarock
 	 */
 	function summary(){
-	
+		if(!$this->cart->payment_info) :
+			redirect('store/checkout/payment?tpl=checkout');
+		endif;
+		
 		$this->load->library('recaptcha');
 		if($this->cart->payment_info){
 				$this->bug->send(json_encode($this->cart->customer_info));
@@ -472,7 +433,7 @@ class Checkout extends MX_Controller {
 				'pT'        => 'Checkout - Order Summary',
 				'cart'      => modules::run('store/checkout/summary_cart'),
 				);
-			$this->dodol_theme->render($rendered)->build('page/checkout/summary_v', $data);
+			$this->dodol_theme->render($rendered)->build('page/checkout/summary_v', $rendered);
 			if($this->input->post('process') && $this->recaptcha->validate()){
 			  $this->process();
 			}
@@ -510,7 +471,7 @@ class Checkout extends MX_Controller {
 			'sub_amount' => $this->cart->total(),
 			'currency' => $this->cart->currency(),
 			'ship_carrier' => $this->cart->shipping_info['carrier'],
-			'ship_carrier_service' => $this->cart->shipping_info['type'],
+			'ship_carrier_service' => $this->cart->shipping_info['service'],
 			'ship_fee' => $this->cart->shipping_info['fee'],
 			'customer_note' => $this->input->post('customer_note'),
 			'status' => 'pending',

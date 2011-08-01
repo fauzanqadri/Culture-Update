@@ -23,10 +23,20 @@ class Dodol_theme
 		}
 
 		function render(){
-	
+			parse_str($_SERVER['QUERY_STRING'], $_GET); 
+			$this->_ci->input->_clean_input_data($_GET);
+			
+			$layout = 'default';
+			if( $this->_ci->router->fetch_module()  == 'store') :
+				$layout = 'extend/store';
+			endif;
+			if( $this->_ci->router->fetch_module()  == 'page') :
+				$layout = 'extend/page';
+			endif;
+			
 			$this->_ci->template->add_theme_location($this->front_theme_location);
 			$this->_ci->template->set_theme($this->front_theme);
-			return $this->_ci->template->set_layout('default');
+			return $this->_ci->template->set_layout($layout);
 		}
 		function view($view, $vars = array(), $return = FALSE){
 			// THEME FILE PATH OVERIDE

@@ -1,0 +1,4 @@
+<?
+
+echo $this->cart->weight();
+?>

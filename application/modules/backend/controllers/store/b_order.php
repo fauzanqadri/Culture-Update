@@ -80,7 +80,7 @@ class B_order extends MX_Controller {
 		$render['pageTool'] = modules::run('backend/store/b_order/updater_form', $order->id, $order->status);
 		$render['pH'] = 'Order No. '.$order->id;
 		$render['mainLayer'] 	='backend/page/store/order/view_v';
-		$this->dodol_theme->admin_render()->build('page/store/order/view_v', $data);
+		$this->dodol_theme->admin_render()->build('page/store/order/view_v', $render);
 	}
 	function updater_form($id_order, $current){
 		$render['id'] = $id_order;
