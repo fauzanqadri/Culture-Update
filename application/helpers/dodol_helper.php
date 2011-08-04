@@ -143,12 +143,12 @@ function objectToJson($objects){
 	return json_encode($this->objectToArray($objects));
 }
 function print_arrayRecrusive($array){
-	$array = (is_object($array)) ? $this->objectToArray($array) : $array;
+	$array = (is_object($array)) ? objectToArray($array) : $array;
 	$output = '';
 	foreach($array as $key => $value){
 		$output .= '<div class="box2 mb10"><span class="bold">'.$key.'</span> =';
 		if(is_array($value) || is_object($value)){
-			$output .= $this->print_arrayRecrusive($value);
+			$output .= print_arrayRecrusive($value);
 		}else{
 			$output .= $value;
 		}
@@ -216,9 +216,6 @@ function _menu_rend($source , $level, $style){
 	$out .= '</ul>';
 	return $out;
 }
-
-
-
 function load_text_editor($id){
 		$this->_ci->load->helper('url');
 		$this->_ci->load->helper('ckeditor');

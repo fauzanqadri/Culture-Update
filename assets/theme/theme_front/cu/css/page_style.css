@@ -1,287 +1,73 @@
-/* LAyout STYLING */
-.store_layout .header .horline_top {
-	width: 550px;
-}
-.store_layout .header .horline_top .line{
-	width: 487px;
-}
-.store_layout .content_body .sidebar  {
-	width: 110px;
-	border: none;
-}
-.store_layout .content_body .sidebar .inner {
-	position: relative;
-	bottom: inherit;
-	right: inherit;
-	border: none;
-}
-.store_layout .content_body .sidebar .inner .mod {
-	position: relative;
-	bottom: inherit;
-	right: inherit;
-}
-.store_layout .content_body .component {
-	width: 820px;
-	float: right;
-	border-left: 2px solid #646466;
-	padding-left: 15px;
-	margin-top: -20px;
-	padding-top: 30px;
-	min-height: 400px;
-}
-
-/* PAGE LAYOUT */
-#page_layout .page_heading {
-	background: #000;
-	height: 60px;
-	color: #fff;
-	text-align: right;
-	padding: 0 20px;
-}
-#page_layout .page_heading h1 {
- margin: 0px ;
- padding: 0px;
- line-height: 60px;
-}
-
-
-#page_landingpage .content_body .sidebar {
-	text-transform: uppercase;
-	}
-#page_landingpage .content_body .sidebar .decor {
-	background: url(../img/hanger_cover.jpg) no-repeat center center;
-	width: 217px;
-	height: 96px;
-	margin-left:3px ;
-}
-#page_landingpage .content_body .component {
-	width: 510px;
-	float:right;
-}
-#page_landingpage .content_body .component .main_cover_img{
-	width: 346px;
-	border: 2px solid #646466;
-	text-align: center;
-	padding: 10px 0 40px;
-	margin-top: 10px;
+#home {
 	
 }
-#page_landingpage .content_body .component .main_cover_img img{
+#home .news_block {
+	
+}
+#home .news_block .item{
 
-} 
-
-
-
-/* MISC Style */
-input.adding {
-	background: #000 !important;
-	color: #fff !important;
-	text-shadow: none !important;
+	display: table-cell;
+	padding: 10px;
+	text-align: justify;
 }
-input[name="addcart"]{
-	text-shadow:none;
-	padding:5px 10px;
-	cursor: pointer;
-	-webkit-border-radius: 3px;
-	   -moz-border-radius: 3px;
-	        border-radius: 3px;
-}
-
-/* style page */
-
-/* COLLECTION INDEX */
-#collection_index .coll_list .coll_image {
-	width: 600px;
-}
-#collection_index .coll_list .coll_detail {
-	width: 200px;
-}
-#collection_index .coll_list .even .coll_image { float: right;
-}
-#collection_index .coll_list .odd .coll_image{ float: left;
-}
-#collection_index .coll_list .even .coll_detail { float: left;
-}
-#collection_index .coll_list .odd .coll_detail{ float: right;
-}
-#collection_index .coll_list .item{
-	margin-bottom: 10px;
-}
-#collection_index .coll_list .item h1 {
-	margin: 0px;
-	line-height: 24px;
-	padding: 0px;
-}
-#collection_index .coll_list .item .description{
-	margin-top: 20px;
-}
-
-/* COLLECTION DETAIL */
-#collection_detail .main_comp {
-	position: relative;
-}
-#collection_detail  .collection_info {
-	position: relative;
-	min-height: 300px;
-}
-#collection_detail  .collection_info .coll_bg{
-	position: relative;
-	margin-bottom: -300px;
-	width: 700px;
-	float: right;
-}
-#collection_detail .collection_info .coll_bg img {
-	width: 700px;
-	height: 300px;
-	position: absolute;
-
-}
-#collection_detail .collection_info .coll_detail h1 {
-	font-size: 30px;
-	font-weight: normal;
+#home .news_block .item h3 {
+	font-size: 20px;
 	margin-bottom: 5px;
 }
-#collection_detail .collection_info .coll_detail .description {
-	margin-top: 15px;
+#home .featured_prod .item {
+	display: table-cell;
+	padding: 0px 10px;
+
 }
-
-#collection_detail .collection_info .coll_bg .cover_overlay{
-	width: 700px;
-	height: 300px;
-	background: url(../img/store/cover_collection_bg_detail.png) no-repeat center center;
-	float: right;
-	position: absolute;
-}
-#collection_detail .collection_info .coll_detail {
-	width: 500px;
-	position: absolute;
-}
-
-
-/* View Detail Product	
-----------------------------------------------------------------------------------------------------*/
-.viewProduct .detailProd { width:400px; float:right}
-.viewProduct .mediaProd { width:400px; float:left;}
-.viewProduct .mediaProd .otherImg { margin-top:10px;}
-.viewProduct .detailProd .prod_name { font-family: Myriad; font-size: 30px; margin-bottom:5px }
-.viewProduct .detailProd .detailprice {height:50px; font-size:16px;}
-.viewProduct .detailProd .detailprice p {line-height:50px; text-align:right; border-top:#ccc 1px solid; border-bottom:#ccc 1px solid; margin:0px;}
-.viewProduct .detailProd .descProd {margin-top:15px; min-height:300px;}
-.viewProduct .relation_product { border-top:1px solid #ccc; margin-top:20px}
-/* PRODUCT SNAP
-----------------------------------------------------------------------------------------------------*/
-.productSnap { width:260px; height:320px; float:left; margin:0 10px 10px 3px; margin-bottom:20px; display: table;}
-.productSnap a {text-decoration: none; color:#fff}
-.productSnap .productImg img { width:260px; height:320px}
-.productSnap .productDetail { border-top:1px solid #ccc;  border-bottom:1px solid #ccc; padding: 5px 0px; margin-top:5px;}
-.productSnap .productPrice {float: right;}
-.productSnap .productImg {position: relative;}
-.productSnap .productImg .snap_tool {width:150px; left: 30px;position:absolute; top:200px; ; background:url(../img/opacity_black.png);padding:15px 10px 0px; display:none;}
-.productSnap .productImg .snap_tool p { line-height:30px; margin:0px; text-align:center; font-size: 80%;}
-.productSnap .productImg .snap_tool p span {-webkit-border-radius: 3px;
-   -moz-border-radius: 3px;
-        border-radius: 3px;padding: 3px 5px; background:#ccc; color:#000; margin-right:5px;}
-.productSnap .productImg .snap_tool h3.prod_name {text-transform: capitalize; margin-bottom:10px; padding:0px; line-height:15px; text-align:center; font-size:14px; color:#fff; font-family:Myriad; font-style: italic;}
-.productSnap .productImg .snap_tool .product_detail { height:20px; margin:0px -10px 0px; background: url('../img/store/bg_detail_product_snap.png') repeat-x;
-color:#fff; font-size:10px; padding:0px 5px;}
-.productSnap .productImg .snap_tool .triangle  { margin-top:-20px; margin-bottom:10px;
-	background: url('../img/opacity_black_triangle.png') no-repeat scroll top center;
-	height: 5px;
-}
-/* VIEW CART 
-----------------------------------------------------------------------------------------------------*/
-.cartView_v .table-Ui table tr.dark td { background: #f2f2f2; border-bottom:1px #D8D8D8 solid; color: #6C6C6C; text-transform: uppercase}
-.cartView_v .table-Ui td { vertical-align: middle;}
-.cartView_v .table-Ui table thead tr td { background: #f2f2f2; border-bottom:1px #D8D8D8 solid; color: #6C6C6C; text-transform: uppercase}
-.cartView_v .table-Ui table tbody tr td { border-bottom:1px solid #DCDCDC; padding:5px 5px;}
-.cartView_v .table-Ui table tbody { border:none;}
-.cartView_v .table-Ui table tbody tr:nth-child(2n) { background:none;}
-.cartView_v .table-Ui table{ margin-bottom:10px;}
-.cartView_v .table-Ui tr td.qty .update_form  { border:1px solid #B2B2B2; padding:3px; width:100px;}
-.cartView_v .table-Ui tr td.qty .update_form .update_button { padding:2px 5px; font-size:10px; margin:0px; display:inline-block;	}
-.cartView_v .table-Ui tr td.qty input { border:none; padding:0px;}
-.cartView_v .table-Ui tr td:last { margin-right:10px;}
-
-/* Checkout Menu step */
-
-.checkout_menu {
-	float: right;
-}
-.checkout_menu .checkout_step {
-
-	float: left;
-	margin-left: 20px;
-	padding:0 20px;
-	height: 30px;
-	background: #efefef;
-	border: 1px solid #e1e1e1;
-}
-.checkout_menu .checkout_step span {
-	display: block;
-	line-height: 30px;
-}
-
-/* Cehckout BUYER INFO
-----------------------------------------------------------------------------------------------------*/
-.buyerinfo .form_buyerinfo {}
-.buyerinfo .form_buyerinfo .customer_info { width:400px;}
-.buyerinfo .form_buyerinfo .form-Ui h4 { margin-bottom:0px;}
-.buyerinfo .form_buyerinfo .login_mod { margin-bottom:20px;}
-.buyerinfo .form_buyerinfo .form-Ui .form-Info{ margin-bottom:10px;}
-
-/* Payment Method */
-
-.payment_method .payment_img {
-	width:122px;
-	height: 37px;
-	background-image: url(../img/payment_option.png);
-	cursor: pointer;
+#home .featured_prod .item .prod_img img {
+	width: 100%;
 	
 }
-.payment_information .item {
-	display: none;
-	font-size: 85%;
-}
-.payment_method .method_items {
+#product_view {
 
 }
-.payment_method .paypal .payment_img{
-	background-position: left 37px;
-} 
-.payment_method .paypal .payment_img:hover,
-.checked .paypal .payment_img {
-	background-position: left top;
-} 
-.payment_method .bca .payment_img{
-	background-position: center bottom;
-} 
-.payment_method .bca .payment_img:hover,
-.checked .bca .payment_img{
-	background-position: center top;
-} 
-.payment_method .mandiri .payment_img{
-	background-position: right bottom;
-} 
-.payment_method .mandiri .payment_img:hover,
-.checked .mandiri .payment_img{
-	background-position: right top;
-} 
-.button_payment {
-	padding: 20px 0px ;
+#product_view .view_product .product_media {
+	margin-right: 30px;
+	width: 600px;
+	float: left;
 }
-.checked .button_payment{
-	border: 1px solid #64d0fe;
-	padding: 19px 0px;
-	background: #d4effe;
-	border-radius: 3px;
+#product_view .view_product .product_media .currentImg {
 
 }
-/* CHECKOUT PAGE TPL */
-#tpl_checkout .toppest_spot {border-bottom:1px solid #ccc;}
-/* Summary */
-.summary_cart .itemlist {border-right:1px solid #ccc; padding-bottom:10px}
-.summary_cart .itemlist .item h6 { margin:0px; border-bottom:1px solid #ccc;}
-.summary_cart .itemlist .item .item_detail {width:170px;}
-.summary_cart .itemlist .item .img_item { margin-right:5px}
-.summary_cart .total_amout { padding-left :10px; text-align: center;}
-.summary_cart .total_amout h1 { margin:0px; padding:0px;}
+#product_view .view_product  .otherImg .item {
+	margin-right:10px;
+}
+#product_view .view_product .product_tool{
+	width: 330px;
+	float: right;
+}
+#product_view .view_product .product_price {
+	font-size:24px;
+}
+#product_view .view_product .product_cart {
+	padding:10px;
+	background: #ededed;
+	text-shadow: 0 1px 0 #fff;
+	width: 400px;
+}
+#product_view .view_product .product_detail {
+	margin-top: 20px;
+}
+#product_view .component {
+	background: none;
+}
+#product_view .view_product .decor {
+	width: 960px;
+	height: 300px;
+	margin-top: -150px;
+}
+#product_view .view_product .decor img {
+	width: 700px;
+	height: 300px;
+}
+#product_view .view_product .decor .cover {
+	margin-top: -300px;
+	width: 700px;
+	height: 300px;
+	background: url(../img/decor_detail_bg.png) no-repeat center center;
+}

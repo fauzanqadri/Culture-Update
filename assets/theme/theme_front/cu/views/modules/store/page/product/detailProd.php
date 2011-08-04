@@ -1,68 +1,70 @@
-<? if($prod){?>
-
-<div class="viewProduct">
-<?
-	$p = $prod['product'];
-	$m = $prod['medias'];
-	$a = $prod['attributes'];
-	$defimg = $prod['media'];	
-?>
-	<div class="detailProd mr10">
-	<h1 class="prod_name"><?=$p->name;?></h1>
-
-	<div class="detailprice">
-	<p><? $price = modules::run('store/product/prod_price', $p->id);
-		echo $price['formated'];
-	?></p>
-	</div>
-
-	<div class="descProd">
-		 <?=$p->l_desc;?>
-	</div>
-	<?=modules::run('store/store_cart/addToCartForm', $a, $p);?>
-	<div class="mediaProd">
-		<script>
-		$(document).ready(function(){
-			$('a.cloud-zoom-gallery').click(function(){
-				var title = $(this).attr('title');
-				$('img.zoom_curent_img').attr('title', title);
-			});
-		});
-		</script>
-		
+<script>
+$(document).ready(function(){
+	$('a.cloud-zoom-gallery').click(function(){
+		var title = $(this).attr('title');
+		$('img.zoom_curent_img').attr('title', title);
+	});
+});
+</script>
+<? $defimg = element('media', $prod); $m = element('medias', $prod);?>
+<div class="view_product">
+	
+	<h1 class="product_name"><?=element('product', $prod)->name?></h1>
+	<div class="product_media">
 		<div class="currentImg">
-
-	<a href='<?=site_url('thumb/show/600-800-crop/dir/assets/store/product_img/'.$defimg->path);?>' class = 'cloud-zoom' id='zoom1'
-            rel="position: 'inside' ,tint: '#ffffff',tintOpacity:0.5 ,smoothMove:10,zoomWidth:300,zoomHeight:400">
-            <img class="zoom_curent_img" src="<?=site_url('thumb/show/350-450-crop/dir/assets/store/product_img/'.$defimg->path);?>" alt='' title="<?=$defimg->name;?>" />
-        </a>
+			<a href='<?=site_url('thumb/show/1200-600-crop/dir/assets/store/product_img/'.$defimg->path);?>' 
+				class = 'cloud-zoom' 
+				id='zoom1'
+				rel="position: 'inside' ,tint: '#ffffff',tintOpacity:0.5 ,smoothMove:10,zoomWidth:300,zoomHeight:400">
+	        	<img  src="<?=site_url('thumb/show/600-300-crop/dir/assets/store/product_img/'.$defimg->path);?>"
+					class="zoom_curent_img" 
+					alt='' 
+					title="<?=$defimg->name;?>" />
+	    	</a>
 
 		</div>
-		<div class="clear"></div>
-		<?if($m){?>
+	</div>
+	<div class="product_tool">
+	<?if($m){?>
 		<div class="otherImg">
 			<?foreach($m as $med){?>
-		<a href='<?=site_url('thumb/show/600-800-crop/dir/assets/store/product_img/'.$med->path);?>' class='cloud-zoom-gallery' title='<?=$med->name;?>'
-        	rel="useZoom: 'zoom1', smallImage: '<?=site_url('thumb/show/400-500-crop/dir/assets/store/product_img/'.$med->path);?>' ">
-        <img class="mr5 left grid_70" src="<?=site_url('thumb/show/70-70-crop/dir/assets/store/product_img/'.$med->path);?>" alt ="<?=$med->name;?>"/></a>
-		
-			
+				<div class="item left">
+				<a href='<?=site_url('thumb/show/1200-600-crop/dir/assets/store/product_img/'.$med->path);?>' 
+					class='cloud-zoom-gallery' 
+					title='<?=$med->name;?>'
+					rel="useZoom: 'zoom1', smallImage: '<?=site_url('thumb/show/600-300-crop/dir/assets/store/product_img/'.$med->path);?>' ">
+        			<img src="<?=site_url('thumb/show/100-100-crop/dir/assets/store/product_img/'.$med->path);?>"   
+						alt ="<?=$med->name;?>"/>
+				</a>
+				
+				</div>
+
 		<?}?>
 		<div class="clear"></div>	
 		</div>
-		<?}?>
+		<div class="cart_form">
+			<?=modules::run('store/store_cart/addToCartForm', element('attributes', $prod), element('product', $prod));?>
+		</div>
+	<?}?>
+	
+	</div>	
+	<div class="clear"></div>
+	
+	<div class="product_detail">
+		<div class="product_desciption">
+			<?=element('product',$prod)->l_desc;?>
+		</div>
 		
 	</div>
-	<div class="clear"></div>
 
-	<?if($rels = element('relations', $prod)):?>
-	<div class="relation_product">
-		<h3 class="font_myriad">Similiar Products</h3>
-		<?foreach($rels as $item):?>
-		<?=modules::run('store/product/prodSnap',$item->p_rel )?>
-		<?endforeach?>
-	</div>
-	<?endif?>
+	<div class="clear"></div>
 	
+	<div class="decor hide">
+		
+		<img class="right" src="<?=site_url('thumb/show/1000-300-crop/dir/assets/store/product_img/'.$defimg->path);?>"
+			alt='<?=element('product', $prod)->name?>' 
+			title="<?=$defimg->name;?>" />
+		<div class="right cover"></div>
+		<div class="clear"></div>
+	</div>
 </div>
-<?}?>

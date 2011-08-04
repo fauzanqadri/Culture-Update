@@ -1,1 +1,0 @@
-<div class="page_content"> <?=$page->content?>	</div>

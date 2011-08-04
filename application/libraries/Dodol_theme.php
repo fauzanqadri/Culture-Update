@@ -27,12 +27,7 @@ class Dodol_theme
 			$this->_ci->input->_clean_input_data($_GET);
 			
 			$layout = 'default';
-			if( $this->_ci->router->fetch_module()  == 'store') :
-				$layout = 'extend/store';
-			endif;
-			if( $this->_ci->router->fetch_module()  == 'page') :
-				$layout = 'extend/page';
-			endif;
+			
 			
 			$this->_ci->template->add_theme_location($this->front_theme_location);
 			$this->_ci->template->set_theme($this->front_theme);
