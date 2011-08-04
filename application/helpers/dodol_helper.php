@@ -2,9 +2,7 @@
 
 
 
-if ( ! function_exists('ddl_post_filter'))
-	{
-		function ddl_post_filter($suffix){
+function ddl_post_filter($suffix){
 			$new_post = array();
 			foreach($_POST as $post => $value){
 				if(strpos($post, $suffix) !== false):
@@ -17,22 +15,15 @@ if ( ! function_exists('ddl_post_filter'))
 			}else{
 				return false;
 			}
-		}
+}
+function html_word_limiter($string, $limiter = false){
+	$output = strip_tags($string);
+	if($limiter != false){
+		$output = word_limiter($output, $limiter);
 	}
-if ( ! function_exists('html_word_limiter'))
-		{
-			function html_word_limiter($string, $limiter = false){
-				$output = strip_tags($string);
-				if($limiter != false){
-					$output = word_limiter($output, $limiter);
-				}
-				return $output;
-			}
-		}
-	
-if( ! function_exists('merge'))
-{
-	function merge(){
+	return $output;
+}
+function merge(){
 	    //check if there was at least one argument passed.
 	    if(func_num_args() > 0){
 	        //get all the arguments
@@ -77,10 +68,7 @@ if( ! function_exists('merge'))
 	    }
 	    //return false if no values passed.
 	    return(false);
-	}
-	
 }
-
 function custom_time($date, $nodate=false){
 	if(empty($date) || $date == null) {
 		if($nodate==false){
@@ -216,6 +204,7 @@ function _menu_rend($source , $level, $style){
 	$out .= '</ul>';
 	return $out;
 }
+
 function load_text_editor($id){
 		$this->_ci->load->helper('url');
 		$this->_ci->load->helper('ckeditor');
@@ -243,4 +232,35 @@ function load_text_editor($id){
 			echo display_ckeditor($config);
 
 }
+function load_ZeroClip(){
+	echo ('
+	<!-- ZEROCLIPBOARD -->
+	<script src="'.base_url().'/assets/global_js/zeroclip/ZeroClipboard.js" type="text/javascript" charset="utf-8"></script>');
+	echo ("$(document).ready(function(){
+		ZeroClipboard.setMoviePath('".base_url()."/assets/global_js/zeroclip/ZeroClipboard.swf');
+		clip = new ZeroClipboard.Client();
+		clip.setHandCursor( true );
+		// assign a common mouseover function for all elements using jQuery
+		$('.toClipBoard').mouseover( function() {
+			// set the clip text to our innerHTML
+			text = $(this).attr('alt');
+			clip.setText(text);
+			// reposition the movie over our element
+			// or create it if this is the first time
+			if (clip.div) {
+				clip.receiveEvent('mouseout', null);
+				clip.reposition(this);
+			}
+			else clip.glue(this);
+			// gotta force these events due to the Flash movie
+			// moving all around. This insures the CSS effects
+			// are properly updated.
+			clip.receiveEvent('mouseover', null);
 
+		} );");
+}
+function load_tableSort(){
+	echo ('
+	<!-- TAble SOrt -->
+	<script src="'.base_url().'/assets/global_js/tableSort/jquery.tablednd_0_5.js" type="text/javascript" charset="utf-8"></script>');
+}

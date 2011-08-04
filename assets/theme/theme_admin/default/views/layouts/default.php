@@ -21,10 +21,7 @@
 <script src="<?=base_url();?>/assets/global_js/hc/highcharts.js" type="text/javascript" charset="utf-8"></script>
 <script src="<?=base_url();?>/assets/global_js/hc/modules/exporting.js" type="text/javascript" charset="utf-8"></script>
 
-<!-- ZEROCLIPBOARD -->
-<script src="<?=base_url();?>/assets/global_js/zeroclip/ZeroClipboard.js" type="text/javascript" charset="utf-8"></script>
-<!-- TAble SOrt -->
-<script src="<?=base_url();?>/assets/global_js/tableSort/jquery.tablednd_0_5.js" type="text/javascript" charset="utf-8"></script>
+
 
 <!--   JS AND CSS ADD ON FOR SPECIFY PAGE   -->
 <?=$this->carabiner->display('add_on')?>

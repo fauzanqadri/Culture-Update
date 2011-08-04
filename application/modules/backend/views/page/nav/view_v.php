@@ -1,3 +1,4 @@
+<?=load_tableSort();?>
 <script type="text/javascript">
 $(document).ready(function() {
     // Initialise the table
