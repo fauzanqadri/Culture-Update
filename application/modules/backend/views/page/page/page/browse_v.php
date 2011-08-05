@@ -1,3 +1,4 @@
+<?=load_ZeroClip()?>
 <div class="clear"></div>
 <div class="list_page">
 	<div class="table-Ui">

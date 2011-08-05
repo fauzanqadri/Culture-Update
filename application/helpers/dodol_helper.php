@@ -236,7 +236,10 @@ function load_ZeroClip(){
 	echo ('
 	<!-- ZEROCLIPBOARD -->
 	<script src="'.base_url().'/assets/global_js/zeroclip/ZeroClipboard.js" type="text/javascript" charset="utf-8"></script>');
-	echo ("$(document).ready(function(){
+	echo (
+		
+		"<script>
+		$(document).ready(function(){
 		ZeroClipboard.setMoviePath('".base_url()."/assets/global_js/zeroclip/ZeroClipboard.swf');
 		clip = new ZeroClipboard.Client();
 		clip.setHandCursor( true );
@@ -257,7 +260,7 @@ function load_ZeroClip(){
 			// are properly updated.
 			clip.receiveEvent('mouseover', null);
 
-		} );");
+		} );</script>");
 }
 function load_tableSort(){
 	echo ('

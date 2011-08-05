@@ -7,6 +7,7 @@ class B_modularizer extends MX_Controller {
 	//php 5 constructor
 	function __construct() {
 		parent::__construct();
+			modules::run('user/auth/userRoleCheck', 'owner');
 	}
 	function index() {
 		
