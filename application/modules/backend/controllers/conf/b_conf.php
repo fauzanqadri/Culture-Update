@@ -27,7 +27,7 @@ class B_conf extends MX_Controller {
 			foreach($_POST as $obj_name => $obj_val ){
 				if(strpos($obj_name, 'obj_') !== false){
 					$obj_name = str_replace('obj_', '',$obj_name);
-					$final_object[$obj_name] = $obj_val;
+					$final_object[strtolower($obj_name)] = $obj_val;
 				}
 			}
 			$data['config_object'] = json_encode($final_object);
@@ -58,7 +58,7 @@ class B_conf extends MX_Controller {
 			foreach($_POST as $obj_name => $obj_val ){
 				if(strpos($obj_name, 'obj_') !== false){
 					$obj_name = str_replace('obj_', '',$obj_name);
-					$final_object[$obj_name] = $obj_val;
+					$final_object[strtolower($obj_name)] = $obj_val;
 				}
 			}
 			$data['config_object'] = json_encode($final_object);

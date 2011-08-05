@@ -117,4 +117,29 @@ class Dodol {
 			parse_str($_SERVER['QUERY_STRING'], $_GET); 
 			$this->_ci->input->_clean_input_data($_GET);
 	}
+	
+	function conf($conf, $item=false){
+		if(is_int($conf)):
+		$this->_ci->db->where('id', $conf);
+		else:
+		$this->_ci->db->where('name', $conf);
+		endif;
+		$this->_ci->db->select('config_object');
+		$q = $this->_ci->db->get('site_conf');
+		if($q->num_rows() > 0):
+			if($item!=false):
+				$list = json_decode($q->row()->config_object, true);
+				if(array_key_exists($item, $list)):
+					return $list[$item];
+				else:
+					return false;
+				endif;
+			else:
+				return json_decode($q->row()->config_object);
+			endif;
+		else:
+			return false;
+		endif;
+	}
+
 }
