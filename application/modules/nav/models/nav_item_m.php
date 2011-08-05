@@ -53,9 +53,45 @@ class Nav_item_m extends CI_Model  {
 			return false;
 		}
 	}
-	function getbypar($id_parent){
+	function getnested($id_nav){
+			$storage = array();
+			if($root = $this->getbypar(0, $id_nav)):
+				foreach($root as $item):
+					$menu_item = array();
+					$menu_item['anchor'] = $item->name;
+					$menu_item['link'] = $item->anchor;
+					if($child = $this->_getnested($id_nav, $item->id)):
+					$menu_item['child'] = $child;
+					endif;
+					array_push($storage, $menu_item);
+				endforeach;
+				return $storage;
+			else:
+				return false;
+			endif;
+		
+	}
+	function _getnested($id_nav, $parent){
+		$storage = array();
+		if($root = $this->getbypar($parent, $id_nav)):
+			foreach($root as $item):
+				$menu_item = array();
+				$menu_item['anchor'] = $item->name;
+				$menu_item['link'] = $item->anchor;
+				if($child = $this->_getnested($id_nav, $item->id)):
+					$menu_item['child'] = $child;
+				endif;
+				array_push($storage, $menu_item);
+			endforeach;
+			return $storage;
+		else:
+			return false;
+		endif;
+	}
+	function getbypar($id_parent, $nav_id){
 	$this->db->order_by('sort', 'ASC');
 	$this->db->where('parent_id', $id_parent);
+	$this->db->where('nav_id', $nav_id);
 	$q = $this->db->get('site_nav_item');
 		if($q->num_rows() > 0){
 				return $q->result();
@@ -64,14 +100,15 @@ class Nav_item_m extends CI_Model  {
 		}
 	}
 	function getbynav($nav_id){
+		$this->db->order_by('parent_id');
 		$this->db->order_by('sort', 'ASC');
 		$this->db->where('nav_id', $nav_id);
 		$q = $this->db->get('site_nav_item');
 			if($q->num_rows() > 0){
 					return $q->result();
-			}else{
+		}else{
 					return false;
-			}
+		}
 		
 	}
 	function getall(){
@@ -86,15 +123,15 @@ class Nav_item_m extends CI_Model  {
 	function getbyid($id){
 		$this->db->order_by('sort', 'ASC');
 		$this->db->where('id', $id);
-			$q = $this->db->get('site_nav_item');
+		$q = $this->db->get('site_nav_item');
 			if($q->num_rows() == 1){
 				return $q->row();
 			}else{
 				return false;
 			}
 		}
-			function browse($param){
+	
+	function browse($param){
+	}
 
-			}
-
-		}?>
+}?>

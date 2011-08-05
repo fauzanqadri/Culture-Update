@@ -28,10 +28,13 @@ class Nav_item extends MX_Controller {
 	function getbyid($id){
 		return $this->mdl->getbyid($id);
 	}
-	function getbypar($id_parent){
-		return $this->mdl->getbypar($id_parent);
+	function getbypar($id_parent, $nav_id){
+		return $this->mdl->getbypar($id_parent, $nav_id);
 	}
 	function getbynav($nav_id){
 		return $this->mdl->getbynav($nav_id);
+	}
+	function getnested($nav_id){
+		return $this->mdl->getnested($nav_id);
 	}
 }?>
