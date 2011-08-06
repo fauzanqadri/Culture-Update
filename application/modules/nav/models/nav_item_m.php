@@ -59,7 +59,7 @@ class Nav_item_m extends CI_Model  {
 				foreach($root as $item):
 					$menu_item = array();
 					$menu_item['anchor'] = $item->name;
-					$menu_item['link'] = $item->anchor;
+					$menu_item['link'] = site_url($item->anchor);
 					if($child = $this->_getnested($id_nav, $item->id)):
 					$menu_item['child'] = $child;
 					endif;
@@ -77,7 +77,7 @@ class Nav_item_m extends CI_Model  {
 			foreach($root as $item):
 				$menu_item = array();
 				$menu_item['anchor'] = $item->name;
-				$menu_item['link'] = $item->anchor;
+				$menu_item['link'] = site_url($item->anchor)	;
 				if($child = $this->_getnested($id_nav, $item->id)):
 					$menu_item['child'] = $child;
 				endif;

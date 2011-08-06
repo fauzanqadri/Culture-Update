@@ -161,10 +161,7 @@ function nice_strlink($string){
 		$new_string = strtolower(str_replace(' ', '-', $string));
 		return $new_string;
 }
-function copy_this_link($string, $anchor = 'copy this' ){
-		$object = '<span class="toClipBoard button" alt="'.$string.'">'.$anchor.'</span>';
-		return $object;
-}
+
 function isAjax() {
 	return (isset($_SERVER['HTTP_X_REQUESTED_WITH']) &&
 		($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest'));
@@ -180,7 +177,7 @@ function menu_rend($source, $type = 'menu_hor', $style = array()){
 	$out = '<ul class="'.$type.'">';
 	foreach($source as $s){
 		if($child = element('child', $s)) :
-			$out .= '<li>'.$wrap_open.'<a href="'.$s['link'].'">'.$s['anchor'].'</a>'.$wrap_close._menu_rend($child, 1, $style).'</li>';
+			$out .= '<li  class="hv_child">'.$wrap_open.'<a href="'.$s['link'].'">'.$s['anchor'].'</a>'.$wrap_close._menu_rend($child, 1, $style).'</li>';
 		else:
 			$out .= '<li>'.$wrap_open.'<a href="'.$s['link'].'">'.$s['anchor'].'</a>'.$wrap_close.'</li>';
 		endif;
@@ -196,7 +193,7 @@ function _menu_rend($source , $level, $style){
 	$out = '<ul class="level_'.$level.'">';
 	foreach($source as $s){
 		if($child = element('child', $s)) :
-			$out .= '<li>'.$wrap_open.'<a href="'.$s['link'].'">'.$s['anchor'].'</a>'.$wrap_close._menu_rend($child, $level, $style).'</li>';
+			$out .= '<li class="hv_child">'.$wrap_open.'<a href="'.$s['link'].'">'.$s['anchor'].'</a>'.$wrap_close._menu_rend($child, $level, $style).'</li>';
 		else:
 		$out .= '<li>'.$wrap_open.'<a href="'.$s['link'].'">'.$s['anchor'].'</a>'.$wrap_close.'</li>';
 		endif;
@@ -232,35 +229,40 @@ function load_text_editor($id){
 			echo display_ckeditor($config);
 
 }
+function copy_this($string, $anchor = 'copy this' ){
+		$object = '<span class="zeroCLipBut"><span class="toClipBoard button" alt="'.$string.'">'.$anchor.'</span></span>';
+		return $object;
+}
 function load_ZeroClip(){
-	echo ('
-	<!-- ZEROCLIPBOARD -->
-	<script src="'.base_url().'/assets/global_js/zeroclip/ZeroClipboard.js" type="text/javascript" charset="utf-8"></script>');
-	echo (
-		
-		"<script>
+	echo ('<script src="'.base_url().'/assets/global_js/zeroclip/ZeroClipboard.js" type="text/javascript" charset="utf-8"></script>');
+	echo ("<script>
+	
 		$(document).ready(function(){
-		ZeroClipboard.setMoviePath('".base_url()."/assets/global_js/zeroclip/ZeroClipboard.swf');
-		clip = new ZeroClipboard.Client();
-		clip.setHandCursor( true );
-		// assign a common mouseover function for all elements using jQuery
-		$('.toClipBoard').mouseover( function() {
-			// set the clip text to our innerHTML
-			text = $(this).attr('alt');
-			clip.setText(text);
-			// reposition the movie over our element
-			// or create it if this is the first time
-			if (clip.div) {
-				clip.receiveEvent('mouseout', null);
-				clip.reposition(this);
-			}
-			else clip.glue(this);
-			// gotta force these events due to the Flash movie
-			// moving all around. This insures the CSS effects
-			// are properly updated.
-			clip.receiveEvent('mouseover', null);
+				ZeroClipboard.setMoviePath('".base_url()."/assets/global_js/zeroclip/ZeroClipboard.swf');
+			clip = new ZeroClipboard.Client();
+			clip.setHandCursor( true );
+			// assign a common mouseover function for all elements using jQuery
+			$('.toClipBoard').mouseover( function() {
+				// set the clip text to our innerHTML
+				text = $(this).attr('alt');
+				clip.setText(text);
+				// reposition the movie over our element
+				// or create it if this is the first time
+				if (clip.div) {
+					clip.receiveEvent('mouseout', null);
+					clip.reposition(this);
+				}
+				else clip.glue(this);
+				// gotta force these events due to the Flash movie
+				// moving all around. This insures the CSS effects
+				// are properly updated.
+				clip.receiveEvent('mouseover', null);
 
-		} );</script>");
+			} );
+
+
+		});
+		</script>");
 }
 function load_tableSort(){
 	echo ('

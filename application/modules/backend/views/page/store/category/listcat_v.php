@@ -32,7 +32,7 @@ if($cats){
     <td class="action">
 		<a href="<?=site_url('backend/store/b_category/editcat/'.$cat->id);?>"><span class="act edit"></span></a>
 		<a href="<?=site_url('backend/store/b_category/deletecat/'.$cat->id);?>"><span class="act del"></span></a>
-		<?=$this->dodol_theme->copy_this_link('store/product/browse/cat/'.$cat->id, 'Copy category Link')?>
+		<?=copy_this('store/product/browse/cat/'.$cat->id, 'Copy category Link')?>
 	</td>
 	</tr>
 <?}}else{

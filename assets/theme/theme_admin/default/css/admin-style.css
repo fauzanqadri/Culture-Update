@@ -28,30 +28,45 @@ background-image: -webkit-gradient(linear, 0 top, 0 bottom, from( #059a9f ), to(
         box-shadow: 0 1px 7px #CCCCCC; margin-bottom:50px;}
 /* Main Layering
 ----------------------------------------------------------------------------------------------------*/
-.header {border-bottom:1px solid #058B9B; margin-top:20px; margin-bottom:10px}
+.header {border-bottom:1px solid #058B9B; margin-top:10px; margin-bottom:10px}
 .mainWrap { min-height:300px;}
 .footerWrap { border-top:1px solid #c1c1c1; margin-bottom:30px; font-size:11px; padding-top:5px; margin-top:10px;}
-.navigation { height:30px; background-color: #000; color: #fff; padding-top:5px; background-image: -moz-linear-gradient(-90deg, #059a9f , #058b9b );
-background-image: -webkit-gradient(linear, 0 top, 0 bottom, from( #059a9f ), to( #058b9b ));
+.navigation { height:30px; background: #058B9B ; color: #fff; padding-top:5px; 
 }
 .navigation a { color: #000; text-shadow: 0 1px 0 #058b9b;}
 /* Inside Main Layering
 -----------------------*/
-.header .logoText {color :#058b9b;margin-bottom:10px; font-size:26px; letter-spacing:-2px; height:30px}
-.header .topMenu { bottom:0px; right:0px;}
-.header .topMenu ul { margin:0; padding:0px;}
-.header .topMenu ul li { float:left; list-style: none;}
-.header .topMenu ul li a { display:block; padding:5px 15px 15px 15px; -moz-border-radius-topleft:3px; -moz-border-radius-topright:3px;border-radius-topleft:3px; border-radius-topright:3px;}
-.header .topMenu ul li ul { position:absolute; margin-left:-15px; display: none; list-style:none;}
-.header .topMenu ul li:hover ul { display:inherit;}
-.header .topMenu ul li a:hover { background:#e4e4e4; text-shadow:0 1px 0 #fff; color:#666666;}
+#backendMenu {
+	margin-top: 2px;
+}
+#backendMenu ul li a {
+	color: #fff;
+	padding: 5px 10px;
+}
+#backendMenu ul li:hover a {
+	background: #fff;
+	color: #058B9B;
+	text-shadow: none;
+	-moz-border-radius-topleft:3px; -moz-border-radius-topright:3px;border-radius-topleft:3px; border-radius-topright:3px;
+}
+#backendMenu ul li ul {
+
+	background: #fff;
+}
+#backendMenu ul li ul li a {
+	color:#058B9B ;
+	text-shadow: none;
+	padding: 5px 10px;
+}
+#backendMenu ul li ul li:hover a{
+	background: #15b5ca;
+	color: #fff;
+	-moz-border-radius-topleft:0px; -moz-border-radius-topright:0px;border-radius-topleft:0px; border-radius-topright:0px;
+	-moz-border-radius-bottomleft:3px; -moz-border-radius-bottomright:3px;border-radius-bottomleft:3px; border-radius-bottomright:3px;
+}
+
 .pageTitle{ font-size:24px; margin:0px; text-transform:capitalize;}
-.navigation .inner {position: relative;z-index:2;bottom:-1px}
-.navigation .inner .topMenu ul { padding:0px; margin:0px; list-style:none;}
-.navigation .inner .topMenu ul li {padding-left:0px; float :left; margin-left:0px; line-height:30px; height:30px; font-weight:normal;}
-.navigation .inner .topMenu ul li a { display:block; padding:0px 10px; color: #fff;text-decoration:none; text-shadow:0 1px 0 #058b9b;}
-.navigation .inner .topMenu ul ul {display:none;}
-.navigation .inner .topMenu ul li a:hover, .navigation .inner .topMenu ul li a.current_link{ background-color: #fff; color: #058b9b; text-shadow:none;}
+
 .header .pageMenu { bottom:0px; right:0px;}
 .header .pageMenu ul {padding:0px;margin:0px }
 .header .pageMenu li { list-style: none; float:left; margin:0px 0px 0px 5px; }
@@ -76,6 +91,56 @@ background-image: -webkit-gradient(linear, 0 top, 0 bottom, from( #059a9f ), to(
 .main_statistic_widget .item span.title { text-shadow:0 1px 0 #fff;}
 .main_statistic_widget .item span.value { font-size:14px; font-weight:bold;}
 .main_statistic_widget div:last-child{ border-right:none ;}
+.backend_userPane{
+
+	position: relative;
+	
+}
+.backend_userPane a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.backend_userPane .trigger {
+	background: url(../../../../global_img/icon/white/gear32_16px.png) no-repeat right center;
+	padding-right: 20px;
+	line-height: 20px;
+	margin-bottom: 0px;
+
+}
+.backend_userPane .triggerWrap {
+	padding: 5px 10px 5px 10px;
+	
+	-moz-border-radius-topleft:3px; -moz-border-radius-topright:3px;border-radius-topleft:3px; border-radius-topright:3px;
+	cursor: pointer;
+}
+.backend_userPane:hover .triggerWrap
+{
+	background: #15b5ca;
+}
+
+.backend_userPane .paneContainer {
+	padding: 10px;
+	background: #15b5ca;
+	z-index: 1000;
+	width: 200px;
+	position: absolute;
+  	right: 0px;
+  	-moz-border-radius-bottomleft:3px; -moz-border-radius-bottomright:3px;border-radius-bottomleft:3px; border-radius-bottomright:3px;
+  	display: none;
+}
+.backend_userPane .paneContainer  .menu {
+	width: 100px ;
+}
+.backend_userPane .paneContainer .menu ul {
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+.backend_userPane .paneContainer .menu ul li {
+	margin-left: 0px;
+
+}
 
 /* Page 
 ----------------------------------------------------------------------------------------------------*/
@@ -83,5 +148,78 @@ background-image: -webkit-gradient(linear, 0 top, 0 bottom, from( #059a9f ), to(
 
 
 /* MISC */
-.toClipBoard .active { background:red;}
-.toClipBoard .hover { background:red;}
+
+.zeroCLipBut .hover { background: #c8c6d6;}
+.zeroCLipBut .active { background: #838180;}
+
+/* JQUERY TABED LINE MENU */
+.droplinetabs{
+overflow: hidden;
+}
+
+.droplinetabs ul{
+margin: 0;
+padding: 0;
+width: 100%;
+list-style: none;
+}
+
+.droplinetabs li{
+display: inline;
+margin: 0 2px 0 0;
+padding: 0;
+}
+
+
+.droplinetabs a{
+float: left;
+text-decoration: none;
+}
+
+.droplinetabs a:link, .droplinetabs a::visited, .droplinetabs a:active{
+
+}
+
+.droplinetabs a span{
+float: left;
+display: block;
+padding: 7px 9px 3px 6px;
+cursor: pointer;
+}
+
+.droplinetabs a span{
+float: none;
+}
+
+
+.droplinetabs a:hover{
+
+}
+
+.droplinetabs a:hover span{
+background-color: transparent;
+}
+
+/* Sub level menus*/
+.droplinetabs ul li ul{
+position: absolute;
+z-index: 100;
+left: 0;
+top: 0;
+visibility: hidden;
+}
+
+/* Sub level menu links style */
+.droplinetabs ul li ul li a{
+padding: 6px;
+padding-right: 8px;
+margin: 0;
+}
+
+.droplinetabs ul li ul li a span{
+}
+
+.droplinetabs ul li ul li a:hover{ /*sub menu links' background color onMouseover. Add rounded edges in capable browsers */
+
+}
+

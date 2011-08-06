@@ -139,3 +139,34 @@ ul.horizontal li {
 
 /* @end */
 
+/* @group Component Style */
+
+/* @group store */
+/* PRODUCT SNAP
+----------------------------------------------------------------------------------------------------*/
+.productSnap { width:260px; height:320px; float:left; margin:0 10px 10px 3px; margin-bottom:20px; display: table;}
+.productSnap a {text-decoration: none; color:#fff}
+.productSnap .productImg img { width:260px; height:320px}
+.productSnap .productDetail { border-top:1px solid #ccc;  border-bottom:1px solid #ccc; padding: 5px 0px; margin-top:5px;}
+.productSnap .productPrice {float: right;}
+.productSnap .productImg {position: relative;}
+.productSnap .productImg .snap_tool {width:150px; left: 30px;position:absolute; top:200px; ; background:url(../img/store/opacity_black.png);padding:15px 10px 0px; display:none;}
+.productSnap .productImg .snap_tool p { line-height:30px; margin:0px; text-align:center; font-size: 80%;}
+.productSnap .productImg .snap_tool p span {-webkit-border-radius: 3px;
+   -moz-border-radius: 3px;
+        border-radius: 3px;padding: 3px 5px; background:#ccc; color:#000; margin-right:5px;}
+.productSnap .productImg .snap_tool h3.prod_name {text-transform: capitalize; margin-bottom:10px; padding:0px; line-height:15px; text-align:center; font-size:14px; color:#fff; font-family:Myriad; font-style: italic;}
+.productSnap .productImg .snap_tool .product_detail { height:20px; margin:0px -10px 0px; background: url('../img/store/bg_detail_product_snap.png') repeat-x;
+color:#fff; font-size:10px; padding:0px 5px;}
+.productSnap .productImg .snap_tool .triangle  { margin-top:-20px; margin-bottom:10px;
+	background: url('../img/opacity_black_triangle.png') no-repeat scroll top center;
+	height: 5px;
+}
+
+
+/* @end */
+
+
+
+/* @end */
+

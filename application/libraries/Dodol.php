@@ -141,5 +141,17 @@ class Dodol {
 			return false;
 		endif;
 	}
-
+	function current_user($select=false){
+		if($select!=false):
+			$this->_ci->db->select($select);
+		endif;
+		$this->_ci->db->where('id', element('user_id', $this->_ci->session->userdata('login_data')));
+		$q = $this->_ci->db->get('user');
+		if($q->num_rows() == 1):
+			return $q->row();
+		else:
+			return false;
+		endif;
+	
+	}
 }

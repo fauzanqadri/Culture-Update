@@ -38,56 +38,7 @@
 
 <body  id="<?=$this->router->class.'_'.$this->router->method;?>" class="backend">
 <div class="navigation"><div class="inner ctr grid_990">
-	<div class="left">
-		<div class="grid_550">
-		<script type="text/javascript">
-
-		//build menu with DIV ID="myslidemenu" on page:
-		droplinemenu.buildmenu("backendMenu")
-
-		</script>
-
-		<div class="topMenu droplinetabs" id="backendMenu"><?=menu_rend(modules::run('nav/nav_item/getnested', 9))?>
-		</div>
-		</div>
-	</div>
-	<div class="right grid_400">
-		<script type="text/javascript" charset="utf-8">
-			$(document).ready(function(){
-			
-				$('.triggerWrap').click(function(){
-					$('.backend_userPane .paneContainer').toggle('slide', {direction:'up'});				
-				})
-			});
-		</script>
-		<div class="backend_userPane left ml20 right">
-			<div class="triggerWrap"><p class="trigger">Administrator</p></div>
-			<div class="paneContainer">
-				<div class="menu left">
-				<ul>
-					<li><span><a href="#">Account</a></span></li>
-					<li><span><a href="#">Setting</a></span></li>
-					<li><span><a href="#">Logout</a></span></li>
-				<ul>
-				</div>
-				<div class="user_img right">
-					<img src="http://a1.twimg.com/profile_images/1479705438/mypic.jpg" width="70">
-				</div>
-				<div class="clear"></div>
-			</div>
-		</div>
-		<div class="backendSearch form-Ui left">
-			<form action="default_submit" method="get" accept-charset="utf-8">
-				<div class="grid_250">
-				<input type="text" name="search" value="search" id="some_name">
-				</div>
-			</form>
-		</div>
-		
-		<div class="clear"></div>
-	</div>
-	<br class="clear"/>
-	</div>
+</div>
 </div>
 <div class="grid_990 ctr">
 <div class="mainGrid ui-corner-bottom">
