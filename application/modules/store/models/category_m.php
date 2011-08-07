@@ -31,7 +31,6 @@ class Category_m extends CI_Model {
 		}
 	}
 	function getcatbyid($id){
-
 		$this->db->where('id', $id);
 		$q = $this->db->get('store_category');
 		if($q->num_rows() > 0){

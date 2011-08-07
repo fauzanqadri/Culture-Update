@@ -4,7 +4,7 @@
 		</div>
 </div>
 <div class="browseProduct left">
-	
+	<h1 class="catName"><?=$cat->name?></h1>
 <?if($prods):
 	foreach($prods as $prod):?>
 		<?=modules::run('store/product/prodSnap',$prod->p_id )?>

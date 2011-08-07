@@ -393,3 +393,9 @@ buildmenu:function(menuid){
 	}) //end document.ready
 }
 }
+
+$(document).ready(function(){
+	$('.hv_child > span >  a').click(function(){
+		return false;
+	})
+});

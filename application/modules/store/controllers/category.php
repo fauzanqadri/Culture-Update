@@ -27,6 +27,8 @@ class category extends MX_Controller {
 	 * @return object
 	 * @author Zidni Mubarock
 	 */
+	function index(){
+	}
 	function getCatDet($id){
 		$cat = $this->store_cat->getcatbyid($id);
 		if($cat){
@@ -34,7 +36,6 @@ class category extends MX_Controller {
 		}else{
 			return false;
 		}
-		
 	}
 	function showAllCat() {
 		$q = $this->store_cat->getAllCat();
@@ -46,11 +47,90 @@ class category extends MX_Controller {
 	}
 	// page 
 	function view(){
-		$id = $this->uri->segment(4);
-		$q = $this->product_m->getProdByCatid($id);
-		$data['prods'] = $q['prodid'];
-		$data['mainLayer'] = 'store/page/category/cat_view_v';
-		$this->dodol_theme->render()->build('page/category/cat_view_v', $data);
+		$this->load->library('barock_page');
+		$cat_id = $this->uri->segment(4);
+		$param = $this->uri->uri_to_assoc(5);
+		if(!isset($param['limit'])){
+			$param['limit'] = 12;
+		}
+		if(!isset($param['page'])){
+			$param['page'] = 0;
+		}
+		$search = (!isset($param['q'])) ? false : $param['q'];
+		
+		if($param['page']){
+			$start = ($param['page'] - 1)* $param['limit'];
+		}else{
+			$start = 0;
+		}
+		$limit = $param['limit'];
+		// configuration before query to database
+		$conf = array(
+			'cat_id'   => $cat_id,
+			'publish'  => 'y',
+			'limit'    => $limit,
+			'start'    => $start,
+			'search'   =>  $search
+			);
+		$prods = $this->product_m->getListProd($conf);
+		// get the base url for pagination,
+		$target_url = str_replace('/page/'.$param['page'] , '', current_url());
+		// configuration for pagination
+		$confpage = array(
+			'target_page' => $target_url,
+			'num_records' => $prods['num_rec'],
+			'num_link'	  => 5,
+			'per_page'   => $limit,
+			'cur_page'   => $param['page']
+			);
+		// execute the pagination conf
+		$this->barock_page->initialize($confpage);
+		$data = array(
+			'mainLayer' => 'page/product/browse_view_v',
+			'prods'     => $prods['prods'],
+			'param'     => $param
+			);
+		$cat = $this->getCatDet($cat_id);
+		$data['pT'] = $cat->name;
+		$data['cat'] = $cat;
+		
+		$this->dodol_theme->render()
+			 			  ->build('page/category/view', $data);
+	}
+	function getCategoryMenu($par = 0){
+			$storage = array();
+			if($root = $this->category_m->getCatByPar($par)):
+				foreach($root as $item):
+					$menu_item = array();
+					$menu_item['anchor'] = $item->name;
+					$menu_item['link'] = site_url('store/category/view/'.$item->id);
+					if($child = $this->_getnested($item->id)):
+					$menu_item['child'] = $child;
+					endif;
+					array_push($storage, $menu_item);
+				endforeach;
+				return $storage;
+			else:
+				return false;
+			endif;
+		
+	}
+	function _getnested($parent){
+		$storage = array();
+		if($root = $this->category_m->getCatByPar($parent)):
+			foreach($root as $item):
+				$menu_item = array();
+				$menu_item['anchor'] = $item->name;
+				$menu_item['link'] = site_url('store/product/browse/cat/'.$item->id);
+				if($child = $this->_getnested($item->id)):
+					$menu_item['child'] = $child;
+				endif;
+				array_push($storage, $menu_item);
+			endforeach;
+			return $storage;
+		else:
+			return false;
+		endif;
 	}
 	
 	

@@ -35,8 +35,12 @@
 }
 .component .topBar {
 	height: 30px;
+	position: relative;
+	margin-bottom: 15px;
 }
-
+.component .topBar .barRight {
+	height: 30px;
+}
 
 /* @end */
 
