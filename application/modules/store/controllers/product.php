@@ -52,11 +52,11 @@ class Product extends MX_Controller {
 		return $this->product_m->getRel($id);
 	}
 	function view(){
-		$param['id'] = $this->uri->segment(4);
+		$param['id'] = $this->uri->segment(3);
 		$param['attr'] = true;
 		$param['media'] = true;
 		//$data['prod'] = $this->detProd($param);
-		$data['prod'] = $this->api_getbyid($this->uri->segment(4), array('media', 'medias', 'relations', 'attributes'));
+		$data['prod'] = $this->api_getbyid($param['id'], array('media', 'medias', 'relations', 'attributes'));
 		$data['loadSide'] = false;
 		$data['mainLayer'] = 'store/page/product/detailProd';
 		$data['pT']        = $data['prod']['product']->name;

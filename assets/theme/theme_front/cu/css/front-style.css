@@ -85,6 +85,24 @@ h6{
 
 
 /* @group MISC */
+
+/* @group Pagination */
+
+.component .pagination a,.component .pagination span  {
+	background: none;
+	border: none;
+	border-right: 1px dotted #ccc;
+	color: #474747;
+	text-transform: capitalize;
+	border-radius:0px;
+}
+.component .pagination li:last-child a,.component .pagination li:last-child span {
+	border-right: none;
+}
+
+
+
+/* @end */
 ul.horizontal {
 	list-style: none;
 	margin: 0px;

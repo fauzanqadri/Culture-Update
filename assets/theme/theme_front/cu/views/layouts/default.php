@@ -54,7 +54,6 @@
 <?=modules::run('ajax/js_showmsg')?>
 </head>
 <body id="<?=$this->router->class.'_'.$this->router->method;?>" >
-
 	<div class="wrapper">
 		<div class="inner_wrap ctr grid_960">
 			<div class="header">

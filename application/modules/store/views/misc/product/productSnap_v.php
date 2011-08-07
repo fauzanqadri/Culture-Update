@@ -9,7 +9,7 @@
 		  <div class="triangle ctr"></div>
 		  <h3 class="prod_name"><?=$prod->name?></h3>
 		<div class="product_detail">
-			<div class="left"><a href="<?=site_url('store/product/view/'.$prod->id.'/'.$this->dodol_theme->nice_strlink($prod->name));?>"><span class="productame">View Detail</span></a></div>
+			<div class="left"><a href="<?=site_url('store/prod/'.$prod->id.'/'.$this->dodol_theme->nice_strlink($prod->name));?>"><span class="productame">View Detail</span></a></div>
 			<div class="right"><span class="finalPrice"><?=$price['formated']?></span></div>
 			<div class="clear"></div>
 		</div>

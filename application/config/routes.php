@@ -51,9 +51,13 @@ $route['store/cart'] = "store/store_cart";
 $route['login/(:any)'] = "user/frontend_login/$1";
 $route['login'] = "user/frontend_login";
 $route['logout'] = "user/auth/frontlogout";
-$route['store/products/(:num)/(:any)'] = "store/product/view/$1/$2";
+
 $route['page/about'] = "page/view/id/3";
 $route['asuh'] = "tester/test13/56";
+
+// STORE
+$route['store/cat/(:num)/(:any)'] = "store/category/view/$1/$2";
+$route['store/prod/(:any)'] = "store/product/view/$1";
 
 
 /* End of file routes.php */

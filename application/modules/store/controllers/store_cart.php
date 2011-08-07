@@ -33,10 +33,10 @@ class Store_cart extends MX_Controller {
 			if(element('addtocart', $addToCart)){
 				$this->dodol->print_arrayRecrusive($addToCart);
     			$this->messages->add('succesfully add to cart', 'success');
-    			redirect('store/product/view/'.$this->input->post('id_prod'));
+    			redirect('store/product/'.$this->input->post('id_prod'));
     		}else{
 				$this->messages->add('failed add to cart ', 'warning');
-    			redirect('store/product/view/'.$this->input->post('id_prod'));	
+    			redirect('store/product/'.$this->input->post('id_prod'));	
     		}
 			
 			

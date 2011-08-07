@@ -13,36 +13,51 @@ class Dodol_theme
 		var $front_css 		= array();
 		var $back_js 		= array();
 		var $back_css 		= array();
-
+		var $front_class ;
+		var $front_layout ='default';
+		
 		function Dodol_theme(){
-			$this->_ci =& get_instance();
+			//$this->_ci =& get_instance();
 			$this->front_theme = 'cu';
 			$this->admin_theme = 'default';
 			$this->front_theme_location = './assets/theme/theme_front/';
 			$this->admin_theme_location = './assets/theme/theme_admin/';
+			/* NEXT
+			include($this->front_theme_location.$this->front_theme.'/'.$this->front_theme.'_theme'.EXT);
+			$file = ucfirst($this->front_theme.'_theme');
+			$this->front_class =  new $file();
+			$this->front_class->register();
+			*/
 		}
-
+		function __autoload(){
+		
+		}
+		function __get($var){
+	        global $CI;
+	        return $CI->$var;
+	    }
+		function set_front_layout($file){
+			$this->front_layout = $file;
+		}
 		function render(){
 			parse_str($_SERVER['QUERY_STRING'], $_GET); 
-			$this->_ci->input->_clean_input_data($_GET);
+			$this->input->_clean_input_data($_GET);
 			
-			$layout = 'default';
-			
-			
-			$this->_ci->template->add_theme_location($this->front_theme_location);
-			$this->_ci->template->set_theme($this->front_theme);
-			return $this->_ci->template->set_layout($layout);
+			$layout = $this->front_layout;
+			$this->template->add_theme_location($this->front_theme_location);
+			$this->template->set_theme($this->front_theme);
+			return $this->template->set_layout($layout);
 		}
 		function view($view, $vars = array(), $return = FALSE){
 			// THEME FILE PATH OVERIDE
 			$path = $this->front_theme_location.$this->front_theme.'/views/modules/';
 			// IF VIEW FILE EXIST ON THEME, LETS PUT ALL on here
 			if(file_exists($path.$view.EXT)):
-				return $this->_ci->load->my_view($path, $view, $vars, $return);
+				return $this->load->my_view($path, $view, $vars, $return);
 		
 			else:
 			// IF THEME DOSN't HAve THE file, Let put it back to th module 
-				return $this->_ci->load->view($view, $vars, $return);
+				return $this->load->view($view, $vars, $return);
 			endif;
 
 		}
@@ -51,19 +66,19 @@ class Dodol_theme
 		return base_url().$path;
 		}
 		function admin_render(){
-			$this->_ci->template->add_theme_location($this->admin_theme_location);
-			$this->_ci->template->set_theme($this->admin_theme);
-			return $this->_ci->template->set_layout('default');
+			$this->template->add_theme_location($this->admin_theme_location);
+			$this->template->set_theme($this->admin_theme);
+			return $this->template->set_layout('default');
 		}
 		function admin_view($view, $vars = array(), $return = FALSE){
 			// THEME FILE PATH OVERIDE
 			$path = $this->admin_theme_location.$this->admin_theme.'/views/modules/';
 			// IF VIEW FILE EXIST ON THEME, LETS PUT ALL on here
 			if(file_exists($path.$view.EXT)):
-				return $this->_ci->load->my_view($path, $view, $vars, $return);
+				return $this->load->my_view($path, $view, $vars, $return);
 			else:
 			// IF THEME DOSN't HAve THE file, Let put it back to th module 
-				return $this->_ci->load->view($view, $vars, $return);
+				return $this->load->view($view, $vars, $return);
 			endif;
 
 		}
@@ -134,8 +149,8 @@ class Dodol_theme
 
 
 		function load_text_editor($id){
-				$this->_ci->load->helper('url');
-				$this->_ci->load->helper('ckeditor');
+				$this->load->helper('url');
+				$this->load->helper('ckeditor');
 				//Ckeditor's configuration
 				$config = array(
 					'id' 	=> 	$id, 
@@ -156,7 +171,11 @@ class Dodol_theme
 
 			}	
 
-	
-
-
 }
+
+	
+	
+	
+	
+	
+	

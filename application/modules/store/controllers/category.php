@@ -48,7 +48,7 @@ class category extends MX_Controller {
 	// page 
 	function view(){
 		$this->load->library('barock_page');
-		$cat_id = $this->uri->segment(4);
+		$cat_id = $this->uri->segment(3);
 		$param = $this->uri->uri_to_assoc(5);
 		if(!isset($param['limit'])){
 			$param['limit'] = 12;
@@ -103,7 +103,7 @@ class category extends MX_Controller {
 				foreach($root as $item):
 					$menu_item = array();
 					$menu_item['anchor'] = $item->name;
-					$menu_item['link'] = site_url('store/category/view/'.$item->id);
+					$menu_item['link'] = site_url('store/cat/'.$item->id.'/'.nice_strlink($item->name));
 					if($child = $this->_getnested($item->id)):
 					$menu_item['child'] = $child;
 					endif;
@@ -121,7 +121,7 @@ class category extends MX_Controller {
 			foreach($root as $item):
 				$menu_item = array();
 				$menu_item['anchor'] = $item->name;
-				$menu_item['link'] = site_url('store/product/browse/cat/'.$item->id);
+				$menu_item['link'] = site_url('store/cat/'.$item->id);
 				if($child = $this->_getnested($item->id)):
 					$menu_item['child'] = $child;
 				endif;
