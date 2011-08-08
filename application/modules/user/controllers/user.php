@@ -8,6 +8,7 @@ class User extends MX_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('user/user_m');
+		$this->role_list = array('owner', 'member', 'manager', 'customer');
 	}
 	
 	//php 4 constructor
@@ -72,7 +73,7 @@ class User extends MX_Controller {
 	}
 	function exe_edit($passdata, $id){
 		$passdata['m_date'] = date('Y-m-d H:i:s');
-		$q = $this->user_m->update($passdata, $id);
+		$q = $this->user_m->do_update($passdata, $id);
 		return $q;
 	}
 	function getCity(){
@@ -80,5 +81,22 @@ class User extends MX_Controller {
 		$json = $this->user_m->getCity($this->input->post('city'), 4);
 		echo $json;}
 	}
+	
+	// API //
+	function api_roles(){
+		return $this->role_list;
+	}
+	function api_browse($param=false){
+		return 	$this->user_m->browse($param);
+	}
+	function api_getbyid($id){
+		return $this->user_m->getbyid($id);
+	}
+	function api_update($id, $data){
+		return $this->user_m->update($id, $data);
+	}
+	function delete($id){
+		return $this->user_m->delete($id);
+	}
 
-}?>
+}
