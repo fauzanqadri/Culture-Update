@@ -140,4 +140,13 @@ class Blog_m extends CI_Model {
 			return false;
 		endif;
 	}
+	function cat_getbyid($id){
+		$this->db->where('id', $id);
+		$q = $this->db->ger('blog_category');
+		if($q->num_rows() == 1):
+			return $q->row();
+		else:
+			return false;
+		endif;
+	}
 }
