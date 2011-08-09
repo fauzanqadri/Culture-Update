@@ -132,7 +132,7 @@ class Blog_m extends CI_Model {
 			return false;
 		endif;
 	}
-	function browse($param){
+	function cat_browse($param){
 		$q = $this->db->get('blog_category');
 		if($q->num_rows() > 0):
 			return $q->result();
