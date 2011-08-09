@@ -207,3 +207,33 @@ div.autosize { display: table; width:auto; }
 .box2 hr { border-bottom: 1px solid #ddd; border-top: 1px solid #fff; }
 .box2 .separator { border-bottom: 1px solid #ddd; }
 .box2 .note { color: #666; }
+
+/* AJAX
+----------------------------------------------------------------------------------------------------*/
+
+/* print autolist */
+.ajx_autolist {
+	position: absolute;
+	border: 1px solid #63d6d3;
+	border-radius: 3px;
+	
+}
+.ajx_autolist ul {
+	padding: 0px;
+	margin: 0px;
+	background: #fff;
+	list-style: none;
+	padding: 0 3px;
+	max-height: 150px;
+	overflow: auto; overflow-x: hidden;
+}
+.ajx_autolist li{
+	margin-left: 0px;
+	padding: 3px 5px;
+	cursor: pointer;
+	border-radius: 3px;
+}
+.ajx_autolist li:hover {
+	background: #10a3b2;
+	color: #fff;
+}

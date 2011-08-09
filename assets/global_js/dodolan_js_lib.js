@@ -399,3 +399,28 @@ $(document).ready(function(){
 		return false;
 	})
 });
+
+function delayTimer(delay){
+     var timer;
+     return function(fn){
+          timer=clearTimeout(timer);
+          if(fn)
+               timer=setTimeout(function(){
+               fn();
+               },delay);
+          return timer;
+     }
+}
+function print_autolist(object , class_to, ident, target){
+	wrap = $(target).parent();
+	width = $(target).before().outerWidth();
+
+	var list = '<div class="ajx_autolist '+class_to+'" style="width:'+(width-2)+'px"><ul>';
+	$.each(object, function(key, val){
+			list += '<li '+ident+'="'+val.id+'" class="cat_name">'+val.name+'</li>';
+	});
+	list += '</ul></div>';
+	wrap.append(list);
+
+}
+

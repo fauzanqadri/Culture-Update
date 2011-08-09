@@ -14,12 +14,12 @@ class Blog_m extends CI_Model {
 		$this->db->where('title', element('title', $data));
 		$pre = $this->db->get('blog_post');
 		if($pre->num_rows() > 0):
-			$data['slug'] = strtolower(str_replace(' ', '_', element('title', $data))).'_'.$pre->num_rows()+1;
+			$data['slug'] = strtolower(str_replace(' ', '_', element('title', $data))).'_'.$pre->num_rows();
 		else:
 			$data['slug'] = strtolower(str_replace(' ', '_', element('title', $data)));
 		endif;
 		$this->db->insert('blog_post', $data);
-		return $this->getbyid($this->db->insert_id());
+		return $this->post_getbyid($this->db->insert_id());
 	}
 	function post_update($id, $data){
 		$data['m_date'] = date('Y-m-d H:i:s');
@@ -58,8 +58,24 @@ class Blog_m extends CI_Model {
 		endif;
 	}
 	function post_browse($param){
-		
+		if($cat_id = element('cat_id', $param)) :
+			$this->db->where('cat_id', $cat_id);
+		endif;
+		if($status = element('status', $param)):
+			$this->db->where('status', $status);
+		endif;
+		if($src = element('src', $param)):
+			$this->db->like('title', $src);
+		endif;
+		$q = $this->db->get('blog_post', element('start', $param), element('limit', $param));
+		if($q->num_rows() > 0):
+			$return = array('posts' => $q->result(), 'num_rows' => $q->num_rows());
+			return $return;
+		else:
+			return false;
+		endif;
 	}
+	
 	function comment_create($data){
 		$data['c_date'] = date('Y-m-d H:i:s');
 		if($this->db->insert('blog_comment', $data)):
@@ -108,6 +124,13 @@ class Blog_m extends CI_Model {
 	
 	function cat_create($data){
 		if($this->db->where('name', element('name', $data))->get('blog_category')->num_rows > 0): return false;endif;
+		$this->db->where('name', element('name', $data));
+		$pre = $this->db->get('blog_category');
+		if($pre->num_rows() > 0):
+			$data['slug'] = strtolower(str_replace(' ', '_', element('name', $data))).'_'.$pre->num_rows();
+		else:
+			$data['slug'] = strtolower(str_replace(' ', '_', element('name', $data)));
+		endif;
 		if($this->db->insert('blog_category', $data)):
 			return $this->cat_getbyid($id);
 		else:
@@ -133,18 +156,79 @@ class Blog_m extends CI_Model {
 		endif;
 	}
 	function cat_browse($param){
+		if($src = element('src', $param)): 
+			$this->db->like('name', $src); 
+		endif;
+		
 		$q = $this->db->get('blog_category');
 		if($q->num_rows() > 0):
-			return $q->result();
+			$return = array('num_rows' => $q->num_rows(), 'cats' => $q->result());
+			return $return;
 		else:
 			return false;
 		endif;
 	}
 	function cat_getbyid($id){
 		$this->db->where('id', $id);
-		$q = $this->db->ger('blog_category');
+		$q = $this->db->get('blog_category');
 		if($q->num_rows() == 1):
 			return $q->row();
+		else:
+			return false;
+		endif;
+	}
+	
+	function tag_create($data){
+		$this->db->where('name', element('name', $data));
+		$pre = $this->db->get('blog_tag');
+		if($pre->num_rows() >  0):	return false; endif;
+
+		if($this->db->insert('blog_tag', $data)):
+			return $this->tag_getbyid($this->db->insert_id());
+		else:
+			return false;
+		endif;
+	}
+	function tag_update($id, $data){
+		if(!$this->tag_getbyid($id)) : return false; endif;
+		
+		$this->db->where('name', element('name', $data));
+		$pre = $this->db->get('blog_tag');
+		if($pre->num_rows() >  0):	return false; endif;
+		
+		$this->db->where('id', $id);
+		if($this->db->update('blog_tag', $data)):
+			return $this->tag_getbyid($id);
+		else:
+			return false;
+		endif;
+		
+	}
+	function tag_getbyid($id){
+		$this->db->where('id', $id);
+		$q = $this->db->get('blog_tag');
+		if($q->num_rows() == 1 ):
+			return $q->row();
+		else:
+			return false;
+		endif;
+	}
+	function tag_delete($id){
+		if(!$item = $this->tag_getbyid($id)) : return false;endif;
+		$this->db->where('id', $id);
+		if($this->db->delete('blog_tag')):
+			return $item;
+		else:
+			return false;
+		endif;
+	}
+	function tag_browse($param){
+		if($src = element('src', $param)):
+			$this->db->like('name', $src);
+		endif;
+		$q = $this->db->get('blog_tag');
+		if($q->num_rows() > 0):
+			$return = array('num_rows' => $q->num_rows(), 'tags' => $q->result());
 		else:
 			return false;
 		endif;
