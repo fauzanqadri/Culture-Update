@@ -93,7 +93,7 @@
 <div class="mainGrid ui-corner-bottom">
 	<div class="header grid_950 ctr relative">
 		<div class="left logoTop">
-		<h1 class="logoText"><?=$this->config->item('site_name');?><small> Beta 0.1</small></h1>
+		<h1 class="logoText"><?=$this->dodol->conf('site', 'name');?><small> Beta 0.1</small></h1>
 		</div>
 		<?if(isset($pageMenu)):?>
 			<div class="pageMenu right absolute"><?=$pageMenu?></div>
@@ -115,11 +115,11 @@
 <!PAGE HEADING AND TOOL/>
 	<?if (isset($pageTool) || isset($pH)):?>
 	<div class="pageHeading">
-		<?if(isset($pH)):?>
+		<?$heading = (isset($ph)) ? $pH : $pT;?>
 		<div class="headingTitle left">
-			<h1><?=$pH?></h1>
+			<h1><?=$heading?></h1>
 		</div>
-		<?endif?>
+	
 		
 		<?if(isset($pageTool)):?>
 		<div class="pageTool right">

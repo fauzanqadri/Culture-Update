@@ -13,7 +13,7 @@
 					enabled : false,
 				},
 				title: {
-					text : '<?=$this->config->item('site_name');?> traffic report',
+					text : '<?=$this->dodol->conf('site', 'name');?> traffic report',
 					align : 'right',
 					style: {fontSize : '13px'},
 				},

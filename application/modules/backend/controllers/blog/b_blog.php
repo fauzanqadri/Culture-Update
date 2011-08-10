@@ -15,7 +15,13 @@ class B_blog extends MX_Controller {
 	function post_create(){
 		if($pub = $this->input->post('publish') || $sav = $this->input->post('save')):
 			$data = ddl_post_filter('bl_');
-			modules::run('blog/api_post_create',$data);
+			if($new = modules::run('blog/api_post_create',$data)):
+				$this->messages->add('Success Create Post with title '.$new->title, 'success');
+				redirect('backend/blog/b_blog/post_browse');
+			else:
+				$this->messages->add('somthing wrong, please try again', 'warning');
+				return false;
+			endif;
 		endif;
 		$data['pT'] = 'Create Post';
 		$this->dodol_theme->admin_render()->build('page/blog/post_create', $data);
@@ -35,7 +41,7 @@ class B_blog extends MX_Controller {
 		$this->dodol_theme->admin_render()->build('page/blog/post_browse', $data);
 	}
 	function post_delete(){
-	
+		
 		
 	}
 
@@ -58,14 +64,38 @@ class B_blog extends MX_Controller {
 		endif;
 		echo json_encode($return);
 	}
-	
+	function ajx_cat_crt(){
+		$data['name'] = $this->input->post('name');
+		if($q = modules::run('blog/api_cat_create',$data)) :
+			$return = array('msg' => 1, 'cat' => $q);
+		else:
+			$this->messages->add('something wrong, try again', 'warning');
+			$return = array('msg' => 0);
+		endif;
+		echo json_encode($return);
+	}
 	function category_create(){
+		if($this->input->post('create')):
+			$data = ddl_post_filter('bl_');
+			if($new = modules::run('blog/api_cat_create',$data)	):
+				$this->messages->add('Success Create category with name '.$new->name, 'success');
+				redirect('backend/blog/b_blog/category_browse');
+			else:
+				$this->messages->add('somthing wrong, please try again', 'warning');
+				return false;
+			endif;
+		endif;
 		
 	}
 	function category_edit(){
+		$data['pT'] = 'Edit Category';
+		$this->dodol_theme->admin_render()->build('page/blog/category_edit', $data);
 	}
 	function category_browse(){
-		
+		$q = modules::run('blog/api_cat_browse',array());
+		$data['pT'] = 'Browse Category';
+		$data['cats'] = element('cats', $q);
+		$this->dodol_theme->admin_render()->build('page/blog/category_browse', $data);
 	}
 	function category_delete(){
 		

@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title><?=$this->config->item('site_name')?> <? if(isset($pT)){ echo ' | '.$pT ;}elseif(!isset($pT) && isset($pH)){echo ' | '.$pH;}?></title>
+<title><?=$this->dodol->conf('site', 'name')?> <? if(isset($pT)){ echo ' | '.$pT ;}elseif(!isset($pT) && isset($pH)){echo ' | '.$pH;}?></title>
 
 <!--////////////////////////////
 		  GLOBAL ASSETS 
@@ -68,7 +68,7 @@
 				</div>
 				<div class="footer">
 					<div class="site_copyright left">
-						<p>&copy; <?=$this->config->item('site_name')?> all right reserved</p>
+						<p>&copy; <?=$this->dodol->conf('site', 'name')?> all right reserved</p>
 					</div>
 					<div class="dev_sign right mr10">
 						<p>Develop by BarockProject</p>

@@ -11,4 +11,4 @@ have a new Status,
 <br>
 <br>
 <p>Regards</p>
-<?=$this->config->item('site_name')?>
+<?=$this->dodol->conf('site', 'name')?>

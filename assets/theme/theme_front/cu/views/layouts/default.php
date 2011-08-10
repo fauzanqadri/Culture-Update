@@ -95,7 +95,7 @@
 
 		<div class="footer">
 			<div class="site_copyright left">
-				<p>&copy; <?=$this->config->item('site_name')?> all right reserved</p>
+				<p>&copy; <?=$this->dodol->conf('site', 'name')?> all right reserved</p>
 			</div>
 			<div class="dev_sign right mr10">
 				<p>Develop by BarockProject</p>

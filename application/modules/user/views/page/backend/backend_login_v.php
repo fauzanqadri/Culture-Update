@@ -46,7 +46,7 @@
 
 <div class="grid_420 ctr mt20 login_page mainGrid ui-corner-all">
      <div class="heading_page  def_grad">
-		<h4><?=$this->config->item('site_name');?> Backend Login</h4>
+		<h4><?=$this->dodol->conf('site', 'name');?> Backend Login</h4>
 		</div>
 	<div class="form-Ui loginMod padd20">
 	   
