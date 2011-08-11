@@ -7,6 +7,7 @@ class Blog_m extends CI_Model {
 	//php 5 constructor
 	function __construct() {
 		parent::__construct();
+
 		
 	}
 	function post_create($data){
@@ -172,7 +173,7 @@ class Blog_m extends CI_Model {
 			return false;
 		endif;
 	}
-	function cat_browse($param){
+	function cat_browse($param=false){
 		if($src = element('src', $param)): 
 			$this->db->like('name', $src); 
 		endif;

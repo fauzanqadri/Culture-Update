@@ -24,7 +24,7 @@ class B_blog extends MX_Controller {
 			endif;
 		endif;
 		$data['pT'] = 'Create Post';
-		$this->dodol_theme->admin_render()->build('page/blog/post_create', $data);
+		$this->dodol_theme->render()->build('page/blog/post_create', $data);
 	}
 	function post_edit(){
 		$id = $this->uri->segment(4);
@@ -32,13 +32,13 @@ class B_blog extends MX_Controller {
 			modules::run('blog/api_post_create',$id , $data);
 		endif;
 		$data['pT'] = 'Edit Post';
-		$this->dodol_theme->admin_render()->build('page/blog/post_edit', $data);
+		$this->dodol_theme->render()->build('page/blog/post_edit', $data);
 	}
 	function post_browse(){
 		$q = modules::run('blog/api_post_browse',array());
 		$data['pT'] = 'Browse Post';
 		$data['posts'] = element('posts', $q);
-		$this->dodol_theme->admin_render()->build('page/blog/post_browse', $data);
+		$this->dodol_theme->render()->build('page/blog/post_browse', $data);
 	}
 	function post_delete(){
 		
@@ -89,13 +89,13 @@ class B_blog extends MX_Controller {
 	}
 	function category_edit(){
 		$data['pT'] = 'Edit Category';
-		$this->dodol_theme->admin_render()->build('page/blog/category_edit', $data);
+		$this->dodol_theme->render()->build('page/blog/category_edit', $data);
 	}
 	function category_browse(){
 		$q = modules::run('blog/api_cat_browse',array());
 		$data['pT'] = 'Browse Category';
 		$data['cats'] = element('cats', $q);
-		$this->dodol_theme->admin_render()->build('page/blog/category_browse', $data);
+		$this->dodol_theme->render()->build('page/blog/category_browse', $data);
 	}
 	function category_delete(){
 		

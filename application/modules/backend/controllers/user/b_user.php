@@ -17,7 +17,7 @@ class B_user extends MX_Controller {
 		
 		$data['users'] = element('users',modules::run('user/api_browse'));
 		$data['pT'] = 'User';
-		$this->dodol_theme->admin_render()->build('page/user/browse', $data);
+		$this->dodol_theme->render()->build('page/user/browse', $data);
 		
 	}
 	function view(){

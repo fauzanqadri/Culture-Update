@@ -29,8 +29,8 @@
 
 
 <!-- Css and JS for Specify Individual Theme -->
-<link href="<?=$this->dodol_theme->admin_path();?>/css/admin-style.css" rel="stylesheet" type="text/css" />
-<link href="<?=$this->dodol_theme->admin_path();?>/css/page_style.css" rel="stylesheet" type="text/css" />
+<link href="<?=$this->dodol_theme->path();?>/css/admin-style.css" rel="stylesheet" type="text/css" />
+<link href="<?=$this->dodol_theme->path();?>/css/page_style.css" rel="stylesheet" type="text/css" />
 
 <?=modules::run('ajax/js_showmsg')?>
 </head>

@@ -16,7 +16,7 @@ class Backend extends MX_Controller {
 		$data['pT'] = 'Backend';
 		$data['mainLayer'] = 'backend/sample_view_admin';
 		$data['u_name'] = $u->first_name.' '.$u->last_name;
-		$this->dodol_theme->admin_render()
+		$this->dodol_theme->render()
 						->build('sample_view_admin', $data);
 	}
 	function store_back(){

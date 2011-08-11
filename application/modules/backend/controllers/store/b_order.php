@@ -65,7 +65,7 @@ class B_order extends MX_Controller {
 		$data['pT']     	= $query['number_rec'];
 		$data['mainLayer'] 	='backend/page/store/order/browse_order_v';
 		$data['asuh'] 		= $query['number_rec'];
-		$this->dodol_theme->admin_render()->build('page/store/order/browse_order_v', $data);
+		$this->dodol_theme->render()->build('page/store/order/browse_order_v', $data);
 		
 	}
 	function view(){
@@ -80,7 +80,7 @@ class B_order extends MX_Controller {
 		$render['pageTool'] = modules::run('backend/store/b_order/updater_form', $order->id, $order->status);
 		$render['pH'] = 'Order No. '.$order->id;
 		$render['mainLayer'] 	='backend/page/store/order/view_v';
-		$this->dodol_theme->admin_render()->build('page/store/order/view_v', $render);
+		$this->dodol_theme->render()->build('page/store/order/view_v', $render);
 	}
 	function updater_form($id_order, $current){
 		$render['id'] = $id_order;

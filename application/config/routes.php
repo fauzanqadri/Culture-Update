@@ -59,6 +59,10 @@ $route['asuh'] = "tester/test13/56";
 $route['store/cat/(:num)/(:any)'] = "store/category/view/$1/$2";
 $route['store/prod/(:any)'] = "store/product/view/$1";
 
+// BLOG
+$route['blog'] = "blog/posts";
+$route['blog/read/(:any)'] = "blog/single/(:any)";
+
 
 /* End of file routes.php */
 /* Location: ./system/application/config/routes.php */

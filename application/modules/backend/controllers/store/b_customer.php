@@ -57,9 +57,9 @@ class b_customer extends MX_Controller {
 		$data['mainLayer'] = 'backend/page/store/customer/browse_v';
 		$data['pH'] = 'Customer' ;
 		$data['pageTool'] = $filter_mod;
-		$this->dodol_theme->admin_render()->build('/page/store/customer/browse_v',$data);
+		$this->dodol_theme->render()->build('/page/store/customer/browse_v',$data);
 		
-		// serach action $this->dodol_theme->admin_render
+		// serach action $this->dodol_theme->render
 		if($this->input->post('q')):
 			if($this->input->post('q') != 'Type a Name or Email to start Search'){
 				$filter['q'] = $this->input->post('q');

@@ -6,8 +6,9 @@ class Blog extends MX_Controller {
 
 	function __construct() {
 		parent::__construct();
+		global $post_ID;
 		$this->mdl = $this->load->model('blog/blog_m');
-		$this->load->helper('dodol_dom');
+		$this->dodol_theme->set_layout('extend/blog/blog');
 	}
 	function index(){
 		
@@ -23,7 +24,6 @@ class Blog extends MX_Controller {
 		$this->dodol_theme->render()->build('posts', $data);
 	}
 	function search(){
-		
 	}
 	function single(){
 		$id = $this->uri->segment(3);
@@ -33,8 +33,13 @@ class Blog extends MX_Controller {
 		}
 		$data['post'] = $q;
 		$data['pT'] = $q->title;
+		
+		$post_ID = $q->id;
 		$this->dodol_theme->render()->build('single', $data);
 		
+	}
+	function testing(){
+		echo $post_ID;
 	}
 	
 	// API //
@@ -90,6 +95,7 @@ class Blog extends MX_Controller {
 	function api_comment_browse($param){
 		return $this->mdl->comment_browse($param);
 	}
+
 	function api_cat_create($data){
 		return $this->mdl->cat_create($data);
 	}
@@ -102,8 +108,16 @@ class Blog extends MX_Controller {
 	function api_cat_getbyid($id){
 		return $this->mdl->cat_getbyid($id);
 	}
-	function api_cat_browse($param){
+	function api_cat_browse($param=false){
 		return $this->mdl->cat_browse($param);
+	}
+	function api_cat_menu(){
+		$menu_raw = array();
+		foreach(element('cats', $this->api_cat_browse()) as $item):
+			$item_data = array('anchor' => $item->name, 'link' => 'blog/category/'.$item->slug);
+			array_push($menu_raw, $item_data);
+		endforeach;
+		return $menu_raw;
 	}
 
 }

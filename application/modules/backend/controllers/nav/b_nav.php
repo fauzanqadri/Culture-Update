@@ -16,7 +16,7 @@ class B_nav extends MX_Controller {
 		$render['mainLayer'] = 'backend/page/nav/create_v';
 		$render['pT'] = 'Create Navigation';
 		$render['pH'] = 'Create Navigation';
-		$this->dodol_theme->admin_render()->build('page/nav/create_v', $render);
+		$this->dodol_theme->render()->build('page/nav/create_v', $render);
 		// EXECUTION
 		if($this->input->post('create')):
 						$data= array('name' => $this->input->post('name'), 'description' => $this->input->post('description'));
@@ -40,7 +40,7 @@ class B_nav extends MX_Controller {
 		$render['pT'] = 'Update Navigation '.$nav->name;
 			$render['pH'] = 'Update Navigation '.$nav->name;
 		$render['mainLayer'] = 'backend/page/nav/update_v';
-		$this->dodol_theme->admin_render()->build('page/nav/update_v', $render);
+		$this->dodol_theme->render()->build('page/nav/update_v', $render);
 		if($this->input->post('update')):
 			$data= array('name' => $this->input->post('name'), 'description' => $this->input->post('description'));
 			if($q = modules::run('nav/exe_update',$id,  $data)):
@@ -63,7 +63,7 @@ class B_nav extends MX_Controller {
 		$render['nav'] = $nav;
 		$render['items'] = modules::run('nav/nav_item/getbynav', $id);
 		$render['mainLayer'] = 'backend/page/nav/view_v';
-		$this->dodol_theme->admin_render()->build('page/nav/view_v', $render);
+		$this->dodol_theme->render()->build('page/nav/view_v', $render);
 	}
 	function browse(){
 		$menuSource = array(array('anchor' => 'New Navigation', 'link' => site_url('backend/nav/b_nav/create')));
@@ -72,7 +72,7 @@ class B_nav extends MX_Controller {
 		$render['pageMenu'] = $this->dodol_theme->menu_rend($menuSource);
 		$render['navs'] = modules::run('nav/getall');
 		$render['mainLayer'] = 'backend/page/nav/browse_v';
-		$this->dodol_theme->admin_render()->build('page/nav/browse_v', $render);
+		$this->dodol_theme->render()->build('page/nav/browse_v', $render);
 	}
 	function delete(){
 		$id = $this->uri->segment(5);
@@ -102,7 +102,7 @@ class B_nav extends MX_Controller {
 		$render['pageMenu'] = $this->dodol_theme->menu_rend($menuSource);
 		$render['nav'] = modules::run('nav/getbyid', $id);
 		$render['mainLayer'] = 'backend/page/nav/add_item_v';
-		$this->dodol_theme->admin_render()->build('page/nav/add_item_v', $render);
+		$this->dodol_theme->render()->build('page/nav/add_item_v', $render);
 		// EXEUTION
 		if($this->input->post('create')):
 			$data = array(
@@ -132,7 +132,7 @@ class B_nav extends MX_Controller {
 		$render['item'] = $item;
 		$render['pH'] = 'Edit Menu';
 		$render['mainLayer'] = 'backend/page/nav/edit_item_v';
-		$this->dodol_theme->admin_render()->build('page/nav/edit_item_v', $render);
+		$this->dodol_theme->render()->build('page/nav/edit_item_v', $render);
 		// EXEUTION
 		if($this->input->post('update')):
 			$data = array(

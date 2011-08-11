@@ -35,14 +35,14 @@ class B_extension extends MX_Controller {
 			'pt'        => 'Create Payment',
 			'ht'		=> 'Create Payment',
 			);
-		$this->dodol_theme->admin_render()->build('page/store/extension/payment/create_v', $data);
+		$this->dodol_theme->render()->build('page/store/extension/payment/create_v', $data);
 	}
 	function edit_payment(){
 			$data = array(
 				'pt'        => 'Edit Payment',
 				'ht'		=> 'Edit Payment',
 				);
-			$this->dodol_theme->admin_render()->build('page/store/extension/payment/edit_v', $data);
+			$this->dodol_theme->render()->build('page/store/extension/payment/edit_v', $data);
 	}
 	function delete_payment(){
 		
@@ -61,7 +61,7 @@ class B_extension extends MX_Controller {
 				'payments'	=> $payments,
 				'pageMenu' => $menu,
 				);
-		$this->dodol_theme->admin_render()->build('page/store/extension/payment/list_v', $data);
+		$this->dodol_theme->render()->build('page/store/extension/payment/list_v', $data);
 	}
 	
 }	

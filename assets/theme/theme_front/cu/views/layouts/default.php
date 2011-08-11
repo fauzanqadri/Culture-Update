@@ -87,8 +87,7 @@
 				<div class="sideBar"></div>
 
 				<div class="comp_content">
-						<?=$template['body'];?>
-
+					<?=$template['body'];?>
 				</div>
 			</div>
 
