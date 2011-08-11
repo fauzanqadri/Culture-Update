@@ -1,14 +1,7 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-Class Cu_theme{
-	
-	function Cu_theme(){
-	
+Class Cu_theme extends Dodol_theme{
+	function __construct(){
+		parent::__construct();
 	}
-	function register(){
-		$this->load->library('dodol_theme');
-		$this->dodol_theme->set_front_layout('store');
-	}
-	
-	
 }

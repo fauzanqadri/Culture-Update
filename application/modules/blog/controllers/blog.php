@@ -7,6 +7,7 @@ class Blog extends MX_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->mdl = $this->load->model('blog/blog_m');
+		$this->load->helper('dodol_dom');
 	}
 	function index(){
 		
@@ -14,10 +15,25 @@ class Blog extends MX_Controller {
 	function category(){
 		
 	}
-	function post(){
+	function posts(){
+		$param['status'] = 'publish';
+		$q = modules::run('blog/api_post_browse', $param);
+		$data['pT'] = 'Blog - Post';
+		$data['posts'] = element('posts', $q);
+		$this->dodol_theme->render()->build('posts', $data);
+	}
+	function search(){
 		
 	}
-	function browse(){
+	function single(){
+		$id = $this->uri->segment(3);
+		$q = modules::run('blog/api_post_getbyslug', $id);
+		if(!$q){
+			return $this->dodol_theme->not_found();
+		}
+		$data['post'] = $q;
+		$data['pT'] = $q->title;
+		$this->dodol_theme->render()->build('single', $data);
 		
 	}
 	
@@ -52,6 +68,9 @@ class Blog extends MX_Controller {
 	}
 	function api_post_getbyid($id){
 		return $this->mdl->post_getbyid($id);
+	}
+	function api_post_getbyslug($slug){
+		return $this->mdl->post_getbyslug($slug);
 	}
 	function api_post_browse($param){
 		return $this->mdl->post_browse($param);

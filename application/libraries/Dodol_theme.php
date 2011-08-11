@@ -3,8 +3,8 @@
 Theme Library for CI, Personaly Use for barock [zidmubarock@gmail.com]
 file name : Theme.php
 **/
-
-class Dodol_theme
+require APPPATH."libraries/Dodol.php";
+class Dodol_theme extends Dodol
 {
 		var $_ci 			=  '';
 		var $core_js      	= array();
@@ -17,7 +17,8 @@ class Dodol_theme
 		var $front_layout ='default';
 		
 		function Dodol_theme(){
-			//$this->_ci =& get_instance();
+
+			$this->_ci =& get_instance();
 			$this->front_theme = 'cu';
 			$this->admin_theme = 'default';
 			$this->front_theme_location = './assets/theme/theme_front/';
@@ -28,9 +29,10 @@ class Dodol_theme
 			$this->front_class =  new $file();
 			$this->front_class->register();
 			*/
+			
 		}
-		function __autoload(){
-		
+		function testing(){
+			echo 'pret';
 		}
 		function __get($var){
 	        global $CI;
@@ -47,6 +49,15 @@ class Dodol_theme
 			$this->template->add_theme_location($this->front_theme_location);
 			$this->template->set_theme($this->front_theme);
 			return $this->template->set_layout($layout);
+		}
+		function not_found(){
+			$this->input->_clean_input_data($_GET);
+			
+			$layout = $this->front_layout;
+			$this->template->add_theme_location($this->front_theme_location);
+			$this->template->set_theme($this->front_theme);
+			$data['pT'] = 'Not Found';
+			return $this->template->set_layout($layout)->build('not_found', $data);
 		}
 		function view($view, $vars = array(), $return = FALSE){
 			// THEME FILE PATH OVERIDE

@@ -91,6 +91,9 @@ class category extends MX_Controller {
 			'param'     => $param
 			);
 		$cat = $this->getCatDet($cat_id);
+		if(!$cat){ 
+			return $this->dodol_theme->not_found();
+		}
 		$data['pT'] = $cat->name;
 		$data['cat'] = $cat;
 		

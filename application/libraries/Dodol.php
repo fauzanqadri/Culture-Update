@@ -1,9 +1,21 @@
 <?
+
 class Dodol {
 
 	function __construct()
 	{
-		$this->_ci =& get_instance();		
+		$this->_ci =& get_instance();
+		// register theme add_on
+		/*
+		if(class_exists('Dodol_theme')):
+			// add_on front
+			if(file_exists($path_theme_addon = $this->_ci->dodol_theme->front_theme_location.$this->_ci->dodol_theme->front_theme.'/'.$this->_ci->dodol_theme->front_theme.'_theme'.EXT)):
+				include($path_theme_addon);	
+				$file_theme_addon = ucfirst($this->_ci->dodol_theme->front_theme.'_theme');
+				new $file_theme_addon();
+			endif;
+		endif;
+		*/
 	}
 
 	function custom_time($date, $nodate=false){

@@ -48,9 +48,26 @@ class Blog_m extends CI_Model {
 		endif;
 		
 	}
+	function post_getbyslug($slug){	
+		$this->db->select('*');
+		$this->db->select('b.name as cat_name');
+		$this->db->where('a.slug',$slug);
+		$this->db->join('blog_category b', 'b.id = a.cat_id');
+		$this->db->join('user c', 'c.id = a.author');
+		$q = $this->db->get('blog_post a');
+		if($q->num_rows() == 1):
+			return $q->row();
+		else:
+			return false;
+		endif;
+	}
 	function post_getbyid($id){
-		$this->db->where('id', $id);
-		$q = $this->db->get('blog_post');
+		$this->db->select('*');
+		$this->db->select('b.name as cat_name');
+		$this->db->where('a.id',$id);
+		$this->db->join('blog_category b', 'b.id = a.cat_id');
+		$this->db->join('user c', 'c.id = a.author');
+		$q = $this->db->get('blog_post a');
 		if($q->num_rows() == 1):
 			return $q->row();
 		else:
