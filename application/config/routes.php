@@ -60,8 +60,7 @@ $route['store/cat/(:num)/(:any)'] = "store/category/view/$1/$2";
 $route['store/prod/(:any)'] = "store/product/view/$1";
 
 // BLOG
-$route['blog'] = "blog/posts";
-$route['blog/read/(:any)'] = "blog/single/(:any)";
+$route['blog/read/(:any)'] = "blog/single/$1";
 
 
 /* End of file routes.php */

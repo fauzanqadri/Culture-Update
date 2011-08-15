@@ -189,7 +189,12 @@ class CI_URI {
 		{
 			return '/';
 		}
-				
+		if (strpos($uri, ':') !== FALSE)
+		{
+		  $uri = parse_url(str_replace(':','~!!!~',$uri), PHP_URL_PATH);
+
+		  $uri = str_replace('~!!!~',':',$uri);
+		}
 		$uri = parse_url($uri, PHP_URL_PATH);
 
 		// Do some final cleaning of the URI and return it

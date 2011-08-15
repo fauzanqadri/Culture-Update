@@ -85,9 +85,10 @@ class Blog_m extends CI_Model {
 		if($src = element('src', $param)):
 			$this->db->like('title', $src);
 		endif;
-		$q = $this->db->get('blog_post', element('start', $param), element('limit', $param));
+		$this->dodol->db_calc_found_rows();
+		$q = $this->db->get('blog_post', element('limit', $param), element('start', $param));
 		if($q->num_rows() > 0):
-			$return = array('posts' => $q->result(), 'num_rows' => $q->num_rows());
+			$return = array('posts' => $q->result(), 'num_rows' => $this->dodol->db_found_rows());
 			return $return;
 		else:
 			return false;
@@ -188,6 +189,15 @@ class Blog_m extends CI_Model {
 	}
 	function cat_getbyid($id){
 		$this->db->where('id', $id);
+		$q = $this->db->get('blog_category');
+		if($q->num_rows() == 1):
+			return $q->row();
+		else:
+			return false;
+		endif;
+	}
+	function cat_getbyslug($slug){
+		$this->db->where('slug', $slug);
 		$q = $this->db->get('blog_category');
 		if($q->num_rows() == 1):
 			return $q->row();

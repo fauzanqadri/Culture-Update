@@ -74,5 +74,13 @@ class Thumb extends MX_Controller {
 
 		
 	}
+	function remote(){
+		$thumb = $this->load->library('PhpThumbFactory');
+		$img = $thumb->create('http://www.google.co.id/images/srpr/logo3w.png');
+		$img->resize(100, 100);
+		$img->show();
+	}
+	
+	
 
 }

@@ -35,7 +35,7 @@ class Dodol_theme
 		}
 	
 		function set_layout($file){
-			if(!is_file($this->theme_location.'views/layouts/'.$file.EXT)) : return false ; endif;
+			if(!is_file($this->theme_location.$this->theme.'/views/layouts/'.$file.EXT)) : return false ; endif;
 			if($this->_ci->router->fetch_module() != 'backend'):
 				$this->front_layout = $file;
 			else:
@@ -73,7 +73,6 @@ class Dodol_theme
 		}
 		function not_found(){
 			$this->_ci->input->_clean_input_data($_GET);
-			
 			$layout = $this->front_layout;
 			$this->_ci->template->add_theme_location($this->front_theme_location);
 			$this->_ci->template->set_theme($this->front_theme);
@@ -81,9 +80,18 @@ class Dodol_theme
 			return $this->_ci->template->set_layout($layout)->build('not_found', $data);
 		}
 		
-		function head(){
+		function partial($view){
+			$vars = array();
+			$return = FALSE;
+			$path = $this->theme_location.$this->theme.'/views/partials/';
+			if(file_exists($path.$view.EXT)):
+				return $this->_ci->load->my_view($path, $view, $vars, $return);
+			endif;
 			
-			
+			$path = $this->theme_location.'/partials/';
+			if(file_exists($path.$view.EXT)):
+				return $this->_ci->load->my_view($path, $view, $vars, $return);
+			endif;
 		}
 		function path($dir =NULL){
 		$path = $this->theme_location.$this->theme.'/'.$dir;
