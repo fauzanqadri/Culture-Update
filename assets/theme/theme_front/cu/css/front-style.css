@@ -86,6 +86,14 @@ h6{
 
 /* @group MISC */
 
+.list_decor_right {
+	background: url(../img/list_decor.png) no-repeat right top;
+	height: 9px;
+}
+.list_decor_left {
+	background: url(../img/list_decor.png) no-repeat left bottom;
+	height: 9px;
+}
 /* @group Pagination */
 
 .component .pagination a,.component .pagination span  {

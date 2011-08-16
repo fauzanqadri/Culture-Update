@@ -3,7 +3,8 @@
 if (! defined('BASEPATH')) exit('No direct script access');
 
 class Blog extends MX_Controller {
-
+	
+	var $current_post;
 	function __construct() {
 		parent::__construct();
 		global $post_ID;
@@ -47,7 +48,7 @@ class Blog extends MX_Controller {
 		$this->load->library('barock_page');
 		$uri = $this->uri->uri_to_assoc();
 		$param['start'] = (!element('page', $uri)) ? 0 : element('page', $uri);
-		$param['limit'] = 2;
+		$param['limit'] = 10;
 		$param['status'] = 'publish';
 		$q = modules::run('blog/api_post_browse', $param);
 		$target_url = str_replace('/page/'.element('page', $uri) , '', current_url());
@@ -68,6 +69,15 @@ class Blog extends MX_Controller {
 	}
 	function search(){
 	}
+	function set_post($post){
+		$this->current_post = $post;
+	}
+	function unset_post(){
+		$this->current_post = '';
+	}
+	function get_post(){
+		return $this->current_post;
+	}
 	function single(){
 		$id = $this->uri->segment(3);
 		$q = modules::run('blog/api_post_getbyslug', $id);
@@ -82,28 +92,65 @@ class Blog extends MX_Controller {
 		
 	}
 	function thumb(){
+			$param = $this->uri->segment(3);
+			$param = explode('_', $param);
+			if(is_numeric(element(0, $param))):
+				if(count($param) == 1) :
+					$width 	= element(0, $param);
+					$height = $witdh;
+					$crop 	= true;
+				elseif(count($param) == 2 && is_numeric(element(1, $param))) :
+					$width 	= element(0, $param);
+					$height = element(1, $param);
+					$crop 	= false;
+				elseif(count($param) == 2 && !is_numeric(element(1, $param)) && element(1, $param) == 'crop'):
+					$width 	= element(0, $param);
+					$height = $witdh;
+					$crop 	= true;
+				elseif(count($param) == 3 && element(2, $param) == 'crop'):
+					$width 	= element(0, $param);
+					$height = element(1, $param);
+					$crop 	= true;
+				else:
+					$width 	= 100;
+					$height = 100;
+					$crop 	= false;
+				endif;
+			else:
+				$width 	= 100;
+				$height = 100;
+				$crop 	= false;
+			endif;
+			
 			$img_source = str_replace('/source/', '', strstr(current_url(), '/source/'));
 			$site_domain = str_replace('http://', '', site_url());
-			if(strpos($img_source, $site_domain)):
-			$img_source =  str_replace($site_domain, '', $img_source);
+			
+			
+			if(strpos($img_source, $site_domain) !== false):
+				$is_remote = false;
+				$img_source =  str_replace($site_domain, '', $img_source);
+			else:
+				$is_remote = true;
+				$img_source = 'http://'.$img_source;
 			endif;
-			echo $img_source;
-			
-			
-			
-			 
-		
-		/*
+			/* TODO , THUMB CACHE
+			if($is_remote == false):
+			$file_name = explode('/',$img_source);
+			$cache_path = './assets/blog/cache/thumb/'.implode('_', $param).'/'.element(count($file_name)-1, $file_name);
+			endif;
+			*/
+					
 			$thumb = $this->load->library('PhpThumbFactory');
-			$img = $thumb->create('assets/store/product_img/p_304_m_115_back.jpg');
-			$img->resize(100, 100);
+			$img = $thumb->create($img_source);
+			if($crop == true):
+				$img->adaptiveResize($width, $height);
+			else:
+				$img->resize($width, $height);
+			endif;
 			$img->show();
-		*/
+		
 	}
-	function testing(){
-		echo $post_ID;
-	}
-	
+		
 	// API //
 	function api_post_create($data){
 		if(	(element('cat_id', $data) == null || element('cat_id', $data) == '') &&

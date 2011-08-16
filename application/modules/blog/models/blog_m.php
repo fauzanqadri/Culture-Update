@@ -85,6 +85,7 @@ class Blog_m extends CI_Model {
 		if($src = element('src', $param)):
 			$this->db->like('title', $src);
 		endif;
+		$this->db->order_by('c_date', 'DESC');
 		$this->dodol->db_calc_found_rows();
 		$q = $this->db->get('blog_post', element('limit', $param), element('start', $param));
 		if($q->num_rows() > 0):

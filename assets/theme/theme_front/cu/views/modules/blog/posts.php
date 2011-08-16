@@ -2,16 +2,20 @@
 	
 <?if($posts):?>
 
-	<?foreach($posts as $post):?>
+	<?foreach($posts as $post): set_post($post) ?>
 	<div class="post_item">
-		<?echo blog_date($post->c_date, 'F jS, Y');?>
+		<? echo blog_date($post->c_date, 'F jS, Y');?>
 		
-		<h1 class="post_title"><a href="<?=site_url('blog/read/'.$post->slug)?>"><?=$post->title;?></a></h1>
-		<?=blog_img_thumb($post);?>
-		<?;?>
-		<div class="post_content_pre"><?=html_word_limiter($post->content, 100)?></div>
+		<h1 class="post_title"><a href="<?=post_link();?>"><?=post_title();?></a></h1>
+		<div class="left"><a href="<?=post_link();?>"><img src="<?=post_img_thumb('200_100_crop');?>" alt="<?=post_title();?>"/></a></div>
+		
+		<div class="post_content_pre right grid_500"><?=post_content_prev(70)?></div>
+	
+		<div class="clear"></div>
+		<div class="list_decor_right"></div>
+		
 	</div>
-	<?endforeach;?>
+	<?unset_post(); endforeach;?>
 	<div class="clear"></div>
 	<div class="pagination right">
 	<?=$this->barock_page->make_link();?>
