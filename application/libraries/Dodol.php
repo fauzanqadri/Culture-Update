@@ -6,9 +6,7 @@ class Dodol {
 	{
 		$this->_ci =& get_instance();
 	}
-	function test(){
-		echo 'asuh';
-	}
+
 	function custom_time($date, $nodate=false){
 		if(empty($date) || $date == null) {
 			if($nodate==false){
@@ -156,5 +154,19 @@ class Dodol {
 			return false;
 		endif;
 	
+	}
+	function post_filter($suffix){
+				$new_post = array();
+				foreach($_POST as $post => $value){
+					if(strpos($post, $suffix) !== false):
+					$new_index = str_replace($suffix, '', $post);
+					$new_post[$new_index] = $this->_ci->security->xss_clean($value);
+					endif;
+				}
+				if(count($new_post)>0){
+					return $new_post;
+				}else{
+					return false;
+				}
 	}
 }

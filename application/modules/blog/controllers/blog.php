@@ -159,6 +159,18 @@ class Blog extends MX_Controller {
 	function get_post(){
 		return $this->current_post;
 	}
+	
+	// AJAX FUNC FRONT
+	function ajx_add_comment(){
+		$data = $this->dodol->post_filter('com_');
+		if(	$q = modules::run('blog/api_comment_create',$data)) :
+			
+			$return = array('msg' => 1, 'comment' => $q, 'gravatar' => gravatar_img($q->author_email));
+		else:
+			$return = array('msg' => 0);		
+		endif;
+		echo json_encode($return);
+	}
 		
 	// API //
 	function api_post_create($data){
@@ -199,6 +211,7 @@ class Blog extends MX_Controller {
 		return $this->mdl->post_browse($param);
 	}
 	function api_comment_create($data){
+		
 		return $this->mdl->comment_create($data);
 	}
 	function api_comment_update($id, $data){

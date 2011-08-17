@@ -97,6 +97,7 @@ class Blog_m extends CI_Model {
 	}
 	
 	function comment_create($data){
+		
 		$data['c_date'] = date('Y-m-d H:i:s');
 		if($this->db->insert('blog_comment', $data)):
 			return $this->comment_getbyid($this->db->insert_id());
@@ -134,14 +135,15 @@ class Blog_m extends CI_Model {
 	}
 	function comment_browse($data){
 		if(element('post_id', $data)) : $this->db->whwre('post_id', element('post_id', $data)); endif;
-		$q = $this->db->get('blog_comment', element('start', $data), element('limit', $data));
+
+		$q = $this->db->get('blog_comment',  element('limit', $data), element('start', $data));
+
 		if($q->num_rows() >0):
-			return $q->result();
+
 		else:
 			return false;
 		endif;
 	}
-	
 	function cat_create($data){
 		if($this->db->where('name', element('name', $data))->get('blog_category')->num_rows > 0): return false;endif;
 		$this->db->where('name', element('name', $data));
