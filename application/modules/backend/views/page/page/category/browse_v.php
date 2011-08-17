@@ -42,7 +42,7 @@
 <div class="clear"></div>
 
 </div>	
-<div class="pagination right"><?=$this->barock_page->make_link('p');?></div>
+<div class="pagination right"><?=$this->dodol_paging->make_link('p');?></div>
 	<div class="clear"></div>
 <?else: echo 'there are not category to show'; endif?>
 </div>

@@ -458,8 +458,36 @@ class Product_m extends CI_Model {
 		}
 	}
 	function browse($param){
-		$start = ($start = element('start', $param)) ? $start : 0;
-		$limit = ($limit = element('limit', $param)) ? $limit : 20;
+	
+		$this->db->select('prod.id, cat.name as cat_name');
+		if($src = element('src', $param)):
+			$this->db->or_like(array('prod.name' => $src, 'prod.sku' => $src ));
+		endif;
+		if($publish = element('publish', $param) && (element('publish', $param) == 'y' || element('publish', $param) == 'n')) :
+			$this->db->where('prod.publish', $publish);
+		else:
+			$this->db->where('prod.publish', 'y');
+		endif;
+		if($cat_id = element('cat_id', $param)):
+			$this->db->where('prod.cat_id', $cat_id);
+		endif;
+		$able_order = array('prod.id', 'prod.name');
+		$role_order = (element('order_role', $param) && (element('order_role', $param) == 'ASC' || element('order_role', $param) == 'DESC')) ? element('order_role', $param) : 'DESC';
+		if(element('order_by', $param)) :
+			$this->db->order_by(element('order_by', $param), $role_order);
+		else:
+			$this->db->order_by('prod.id', $role_order);
+		endif;
+		$this->db->join('store_category cat', 'cat.id=prod.cat_id');
+		$this->dodol->db_calc_found_rows();
+		$q = $this->db->get('store_product prod', element('limit', $param), element('start', $param));
+		if($q->num_rows() > 0):
+			$return = array('prods' => $q->result(), 'num_rows' => $this->dodol->db_found_rows());
+		else:
+			$return = false;
+		endif;
+		return $return;
+
 	}
 	
 	// FILE TRANSACTION

@@ -66,7 +66,7 @@ class B_page_category extends MX_Controller {
 		endif;
 	}
 	function browse(){
-		$this->load->library('barock_page');
+		$this->load->library('dodol_paging');
 		$limit = 20;
 		$param = $this->uri->uri_to_assoc();
 		if(!isset($param['p'])): $param['p'] = 0; endif;
@@ -86,7 +86,7 @@ class B_page_category extends MX_Controller {
 				'per_page'   => $limit,
 				'cur_page'   => $param['p']
 				);
-		$this->barock_page->initialize($confpage);
+		$this->dodol_paging->initialize($confpage);
 		$menuSource = array(
 						array(
 						'anchor' => 'Create Category', 'link' => site_url('backend/page/b_page_category/create')),

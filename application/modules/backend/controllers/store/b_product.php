@@ -71,7 +71,7 @@ class B_product extends MX_Controller {
 		$this->load->view('backend/page/store/misc/prod_filter_v');
 	}
 	function listprod(){
-		$this->load->library('barock_page');
+		$this->load->library('dodol_paging');
 		$limit = 20;
 		$param = $this->uri->uri_to_assoc();
 		if(!isset($param['cat'])){
@@ -109,7 +109,7 @@ class B_product extends MX_Controller {
 			'per_page'   => $limit,
 			'cur_page'   => $param['page']
 			);
-		$this->barock_page->initialize($confpage);
+		$this->dodol_paging->initialize($confpage);
 		$menuSource = array(
 			array(
 				'anchor' => 'Add Product', 'link' => site_url('backend/store/b_product/addProd')),

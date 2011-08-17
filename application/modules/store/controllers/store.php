@@ -16,7 +16,10 @@ class Store extends MX_Controller {
 	}
 	
 	function index() {
-	
+	 	echo 'asuh';
+	}
+	function testing_route(){
+		echo 'its work';
 	}
 
 	function request_restock($data=array()){
@@ -77,6 +80,34 @@ class Store extends MX_Controller {
 		$state = $this->input->get('cr');
 		$this->load->helper('store/store_carrier');
 		return store_carrier_helper::load($state);
+	}
+	function new_arrival(){
+		$this->load->library('dodol_paging');
+		$uri = $this->uri->uri_to_assoc();
+		$param['start'] = (!element('page', $uri)) ? 0 : element('page', $uri);
+		$param['limit'] = 10;
+		$param['order_role'] = 'ASC';
+		$param['order_by'] = 'prod.c_date';
+		$q = modules::run('store/product/api_browse', $param);
+		if(!$q):
+			return $this->dodol_theme->not_found();
+		endif;
+		$target_url = str_replace('/page/'.element('page', $uri) , '', current_url());
+				// configuration for pagination
+		$confpage = array(
+					'target_page' => $target_url,
+					'num_records' => element('num_rows', $q),
+					'num_link'	  => 5,
+					'per_page'   => $param['limit'],
+					'cur_page'   => element('page', $uri),
+					);
+				// execute the pagination conf
+		$this->dodol_paging->initialize($confpage);
+		$render['prods'] = element('prods', $q);
+		$render['pT'] 	 = 'New Arrival';
+		$this->dodol_theme->render()->build('store/page/store/new_arrival', $render);
+		
+		
 	}
 
 }?>

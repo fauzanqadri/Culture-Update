@@ -1,7 +1,7 @@
 <div class="browseProduct">
    
 <? if($prods){ foreach($prods as $prod){?>
-<?=modules::run('store/product/prodSnap',$prod->p_id )?>
+<?=modules::run('store/product/prodSnap',$prod->id )?>
 <?}?>
 <div class="clear"></div>
 <div class="pagination right">

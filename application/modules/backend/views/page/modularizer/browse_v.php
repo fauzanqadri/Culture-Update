@@ -70,7 +70,7 @@ $(document).ready(function() {
 		</tbody>
 		</table>
 	</div>
-	<div class="pagination right"><?=$this->barock_page->make_link();?></div>
+	<div class="pagination right"><?=$this->dodol_paging->make_link();?></div>
 	<div class="clear"></div>
 
 	<?else:?>

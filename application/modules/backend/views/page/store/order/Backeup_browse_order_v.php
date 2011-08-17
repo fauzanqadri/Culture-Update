@@ -166,7 +166,7 @@ $data_shipto = $data['shipto_data'];
 </div>
 
 <br class="clear"/>
-<div class="pagination"><?=$this->barock_page->make_link()?></div>
+<div class="pagination"><?=$this->dodol_paging->make_link()?></div>
 </div>
 <?}else{
 	echo 'There arnt, order to show';

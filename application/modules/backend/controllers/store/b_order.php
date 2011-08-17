@@ -21,7 +21,7 @@ class B_order extends MX_Controller {
 	}
 	
 	function browse(){
-		$this->load->library('barock_page');
+		$this->load->library('dodol_paging');
 		$limit = 20;
 		$param = $this->uri->uri_to_assoc();
 		if(!isset($param['page'])){
@@ -59,7 +59,7 @@ class B_order extends MX_Controller {
 			'cur_page'   	=> $param['page']
 			);
 			
-		$this->barock_page->initialize($confpage);
+		$this->dodol_paging->initialize($confpage);
 		}
 		$data['orders']    	= $query['orders'];
 		$data['pT']     	= $query['number_rec'];

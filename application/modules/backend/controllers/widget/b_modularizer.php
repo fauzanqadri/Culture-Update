@@ -84,7 +84,7 @@ class B_modularizer extends MX_Controller {
 		$this->dodol_theme->render()->build('page/modularizer/update_v', $render);
 	}
 	function browse(){
-		$this->load->library('barock_page');
+		$this->load->library('dodol_paging');
 		$limit = 20;
 		$param = $this->uri->uri_to_assoc();
 		if(!isset($param['page'])){ $param['page'] = 1;}
@@ -102,7 +102,7 @@ class B_modularizer extends MX_Controller {
 				'per_page'   	=> $param['limit'],
 				'cur_page'   	=> $param['page']
 				);
-			$this->barock_page->initialize($confpage);
+			$this->dodol_paging->initialize($confpage);
 		}
 		
 	

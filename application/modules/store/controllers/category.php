@@ -47,7 +47,7 @@ class category extends MX_Controller {
 	}
 	// page 
 	function view(){
-		$this->load->library('barock_page');
+		$this->load->library('dodol_paging');
 		$cat_id = $this->uri->segment(3);
 		$param = $this->uri->uri_to_assoc(5);
 		if(!isset($param['limit'])){
@@ -84,7 +84,7 @@ class category extends MX_Controller {
 			'cur_page'   => $param['page']
 			);
 		// execute the pagination conf
-		$this->barock_page->initialize($confpage);
+		$this->dodol_paging->initialize($confpage);
 		$data = array(
 			'mainLayer' => 'page/product/browse_view_v',
 			'prods'     => $prods['prods'],

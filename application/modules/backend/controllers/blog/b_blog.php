@@ -27,11 +27,14 @@ class B_blog extends MX_Controller {
 		$this->dodol_theme->render()->build('page/blog/post_create', $data);
 	}
 	function post_edit(){
-		$id = $this->uri->segment(4);
+		$id = $this->uri->segment(5);
+		$post = modules::run('blog/api_post_getbyid', $id);
+	
 		if($this->input->post('create')):
 			modules::run('blog/api_post_create',$id , $data);
 		endif;
 		$data['pT'] = 'Edit Post';
+		$data['post'] = $post;
 		$this->dodol_theme->render()->build('page/blog/post_edit', $data);
 	}
 	function post_browse(){

@@ -269,3 +269,8 @@ function load_tableSort(){
 	<!-- TAble SOrt -->
 	<script src="'.base_url().'/assets/global_js/tableSort/jquery.tablednd_0_5.js" type="text/javascript" charset="utf-8"></script>');
 }
+function load_jq_validate(){
+	echo ('
+	<!-- jQuery Validate -->
+	<script src="'.base_url().'/assets/global_js/jq_validate/jquery.validate.min.js" type="text/javascript" charset="utf-8"></script>');
+}

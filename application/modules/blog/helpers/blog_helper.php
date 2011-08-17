@@ -1,12 +1,11 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
-function blog_date($str_date, $str_format){
+function blog_date($str_date, $str_format = 'F jS, Y'){
 	return date_format(new Datetime($str_date), $str_format);
 }
 function post_content_prev($limit = 100){
 	$post = get_post();
  	return html_word_limiter($post->content, $limit);
 }
-
 function post_img_thumb($param = '100_100_crop'){
 	$post = get_post();
 	$ci =& get_instance();
@@ -36,6 +35,8 @@ function unset_post(){
 function get_post(){
 	return modules::run('blog/get_post');
 }
-
+function the_post(){
+	return get_post();
+}
 
 ?>

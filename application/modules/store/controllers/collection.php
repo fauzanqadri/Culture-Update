@@ -24,7 +24,7 @@ class Collection extends MX_Controller {
 		$this->dodol_theme->render()->build('page/collection/index_v', $data);
 	}
 	function detail(){
-		$id = $this->uri->segment(4);
+		$id = $this->uri->segment(3);
 		$q = modules::run('store/collection/exe_getById', $id);
 		$coll = $q['main'];
 		$data['coll'] = $coll ;

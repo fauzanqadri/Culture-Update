@@ -61,7 +61,8 @@ select { border:#b2b2b2 1px solid; color: #7b7979; padding:2px; -moz-border-radi
 .form-Ui .inputSet input[type=text], .form-Ui .inputSet input[type=password], .form-Ui .inputSet textarea { width:100%;}
 .form-Ui .inputSet .label { width:30%; float:left; padding-top:5px;}
 .form-Ui .inputSet .input { width:70%; float:left;}
-
+input.error { border-color:red}
+label.error {font-size:11px}
 
 /* TAB-UI
 ----------------------------------------------------------------------------------------------------*/

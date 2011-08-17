@@ -12,6 +12,7 @@ class Blog extends MX_Controller {
 		$this->dodol_theme->set_layout('extend/blog/blog');
 		$this->load->helper('blog/blog');
 	}
+	//PAGE
 	function index(){
 		
 	}
@@ -19,7 +20,7 @@ class Blog extends MX_Controller {
 	
 		$slug = $this->uri->segment(3);
 		$cat  = $this->api_cat_getbyslug($slug);
-		$this->load->library('barock_page');
+		$this->load->library('dodol_paging');
 		$uri = $this->uri->uri_to_assoc();
 		$param['start'] = (!element('page', $uri)) ? 0 : element('page', $uri);
 		$param['limit'] = 10;
@@ -39,13 +40,13 @@ class Blog extends MX_Controller {
 					'cur_page'   => element('page', $uri),
 					);
 				// execute the pagination conf
-		$this->barock_page->initialize($confpage);
+		$this->dodol_paging->initialize($confpage);
 		$data['pT'] = 'Blog - '.$cat->name;
 		$data['posts'] = element('posts', $q);
 		$this->dodol_theme->render()->build('posts', $data);
 	}
 	function posts(){
-		$this->load->library('barock_page');
+		$this->load->library('dodol_paging');
 		$uri = $this->uri->uri_to_assoc();
 		$param['start'] = (!element('page', $uri)) ? 0 : element('page', $uri);
 		$param['limit'] = 10;
@@ -61,22 +62,13 @@ class Blog extends MX_Controller {
 				'cur_page'   => element('page', $uri),
 				);
 			// execute the pagination conf
-		$this->barock_page->initialize($confpage);
+		$this->dodol_paging->initialize($confpage);
 		
 		$data['pT'] = 'Blog - Post';
 		$data['posts'] = element('posts', $q);
 		$this->dodol_theme->render()->build('posts', $data);
 	}
 	function search(){
-	}
-	function set_post($post){
-		$this->current_post = $post;
-	}
-	function unset_post(){
-		$this->current_post = '';
-	}
-	function get_post(){
-		return $this->current_post;
 	}
 	function single(){
 		$id = $this->uri->segment(3);
@@ -91,6 +83,12 @@ class Blog extends MX_Controller {
 		$this->dodol_theme->render()->build('single', $data);
 		
 	}
+	
+	//PARTIAL
+	function comment_form(){
+		$this->dodol_theme->view('blog/comment_form');
+	}
+	//MISC
 	function thumb(){
 			$param = $this->uri->segment(3);
 			$param = explode('_', $param);
@@ -149,6 +147,17 @@ class Blog extends MX_Controller {
 			endif;
 			$img->show();
 		
+	}
+	
+	//HELPER
+	function set_post($post){
+		$this->current_post = $post;
+	}
+	function unset_post(){
+		$this->current_post = '';
+	}
+	function get_post(){
+		return $this->current_post;
 	}
 		
 	// API //

@@ -56,11 +56,11 @@ $route['page/about'] = "page/view/id/3";
 $route['asuh'] = "tester/test13/56";
 
 // STORE
-$route['store/cat/(:num)/(:any)'] = "store/category/view/$1/$2";
-$route['store/prod/(:any)'] = "store/product/view/$1";
+//$route['store/cat/(:num)/(:any)'] = "store/category/view/$1/$2";
+//$route['store/prod/(:any)'] = "store/product/view/$1";
 
 // BLOG
-$route['blog/read/(:any)'] = "blog/single/$1";
+//$route['blog/read/(:any)'] = "blog/single/$1";
 
 
 /* End of file routes.php */

@@ -18,7 +18,7 @@
 	<?unset_post(); endforeach;?>
 	<div class="clear"></div>
 	<div class="pagination right">
-	<?=$this->barock_page->make_link();?>
+	<?=$this->dodol_paging->make_link();?>
 	</div>
 	<div class="clear"></div>
 <?else:?>
